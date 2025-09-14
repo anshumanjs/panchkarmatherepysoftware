@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Gallery & Success Stories - PanchakarmaPro</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-leaf"></i>
+                <span>PanchakarmaPro</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="features.html" class="nav-link">Features</a></li>
+                <li><a href="index.html#therapy-booking" class="nav-link">Book Therapy</a></li>
+                <li><a href="patient-report-dashboard.html" class="nav-link">Patient Reports</a></li>
+                <li><a href="feedback.html" class="nav-link">Feedback</a></li>
+                <li><a href="gallery.html" class="nav-link active">Gallery</a></li>
+                <li><a href="practitioner-login.html" class="nav-link">Practitioner Login</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header Section -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Patient Gallery & Success Stories</h1>
+            <p>See the transformative power of Panchakarma therapy through real patient journeys</p>
+        </div>
+    </section>
+
+    <!-- Filter Section -->
+    <section class="gallery-filters">
+        <div class="container">
+            <div class="filter-tabs">
+                <button class="filter-btn active" data-filter="all">All Stories</button>
+                <button class="filter-btn" data-filter="weight-loss">Weight Loss</button>
+                <button class="filter-btn" data-filter="pain-relief">Pain Relief</button>
+                <button class="filter-btn" data-filter="skin-health">Skin Health</button>
+                <button class="filter-btn" data-filter="digestive">Digestive Health</button>
+                <button class="filter-btn" data-filter="stress">Stress Relief</button>
+                <button class="filter-btn" data-filter="energy">Energy Boost</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Success Stories Gallery -->
+    <section class="success-stories">
+        <div class="container">
+            <div class="stories-grid">
+                <!-- Story 1 -->
+                <div class="story-card" data-category="weight-loss">
+                    <div class="story-image">
+                        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Sarah's Transformation">
+                        <div class="story-overlay">
+                            <div class="story-stats">
+                                <div class="stat">
+                                    <span class="number">-15</span>
+                                    <span class="label">kg lost</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="number">6</span>
+                                    <span class="label">months</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="story-content">
+                        <h3>Sarah's Weight Loss Journey</h3>
+                        <p class="story-summary">"After struggling with weight for years, Panchakarma helped me achieve sustainable weight loss through natural detoxification and lifestyle changes."</p>
+                        <div class="story-details">
+                            <div class="therapy-type">
+                                <i class="fas fa-leaf"></i>
+                                <span>Complete Panchakarma Program</span>
+                            </div>
+                            <div class="duration">
+                                <i class="fas fa-clock"></i>
+                                <span>6 months</span>
+                            </div>
+                        </div>
+                        <div class="story-tags">
+                            <span class="tag">Weight Loss</span>
+                            <span class="tag">Lifestyle Change</span>
+                            <span class="tag">Sustainable Results</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Story 2 -->
+                <div class="story-card" data-category="pain-relief">
+                    <div class="story-image">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Michael's Recovery">
+                        <div class="story-overlay">
+                            <div class="story-stats">
+                                <div class="stat">
+                                    <span class="number">90%</span>
+                                    <span class="label">pain reduction</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="number">3</span>
+                                    <span class="label">months</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="story-content">
+                        <h3>Michael's Arthritis Recovery</h3>
+                        <p class="story-summary">"Chronic arthritis pain that limited my daily activities is now 90% reduced. Basti therapy was a game-changer for my joint health."</p>
+                        <div class="story-details">
+                            <div class="therapy-type">
+                                <i class="fas fa-leaf"></i>
+                                <span>Basti Therapy + Virechana</span>
+                            </div>
+                            <div class="duration">
+                                <i class="fas fa-clock"></i>
+                                <span>3 months</span>
+                            </div>
+                        </div>
+                        <div class="story-tags">
+                            <span class="tag">Arthritis Relief</span>
+                            <span class="tag">Joint Health</span>
+                            <span class="tag">Mobility</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Story 3 -->
+                <div class="story-card" data-category="skin-health">
+                    <div class="story-image">
+                        <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Emily's Skin Transformation">
+                        <div class="story-overlay">
+                            <div class="story-stats">
+                                <div class="stat">
+                                    <span class="number">100%</span>
+                                    <span class="label">clear skin</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="number">2</span>
+                                    <span class="label">months</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="story-content">
+                        <h3>Emily's Skin Transformation</h3>
+                        <p class="story-summary">"Severe acne and skin issues that I had for over a decade completely cleared up with Virechana therapy and proper dietary guidance."</p>
+                        <div class="story-details">
+                            <div class="therapy-type">
+                                <i class="fas fa-leaf"></i>
+                                <span>Virechana + Dietary Therapy</span>
+                            </div>
+                            <div class="duration">
+                                <i class="fas fa-clock"></i>
+                                <span>2 months</span>
+                            </div>
+                        </div>
+                        <div class="story-tags">
+                            <span class="tag">Skin Health</span>
+                            <span class="tag">Acne Treatment</span>
+                            <span class="tag">Detoxification</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Story 4 -->
+                <div class="story-card" data-category="digestive">
+                    <div class="story-image">
+                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="David's Digestive Health">
+                        <div class="story-overlay">
+                            <div class="story-stats">
+                                <div class="stat">
+                                    <span class="number">85%</span>
+                                    <span class="label">improvement</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="number">4</span>
+                                    <span class="label">weeks</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="story-content">
+                        <h3>David's Digestive Recovery</h3>
+                        <p class="story-summary">"Years of digestive issues and IBS symptoms were resolved through personalized Panchakarma treatment and lifestyle modifications."</p>
+                        <div class="story-details">
+                            <div class="therapy-type">
+                                <i class="fas fa-leaf"></i>
+                                <span>Basti + Virechana + Diet</span>
+                            </div>
+                            <div class="duration">
+                                <i class="fas fa-clock"></i>
+                                <span>4 weeks</span>
+                            </div>
+                        </div>
+                        <div class="story-tags">
+                            <span class="tag">Digestive Health</span>
+                            <span class="tag">IBS Relief</span>
+                            <span class="tag">Gut Health</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Story 5 -->
+                <div class="story-card" data-category="stress">
+                    <div class="story-image">
+                        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Lisa's Stress Relief">
+                        <div class="story-overlay">
+                            <div class="story-stats">
+                                <div class="stat">
+                                    <span class="number">95%</span>
+                                    <span class="label">stress reduction</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="number">6</span>
+                                    <span class="label">weeks</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="story-content">
+                        <h3>Lisa's Stress & Anxiety Relief</h3>
+                        <p class="story-summary">"High-stress job and anxiety were taking over my life. Nasya therapy and meditation practices helped me find inner peace and balance."</p>
+                        <div class="story-details">
+                            <div class="therapy-type">
+                                <i class="fas fa-leaf"></i>
+                                <span>Nasya + Meditation + Yoga</span>
+                            </div>
+                            <div class="duration">
+                                <i class="fas fa-clock"></i>
+                                <span>6 weeks</span>
+                            </div>
+                        </div>
+                        <div class="story-tags">
+                            <span class="tag">Stress Relief</span>
+                            <span class="tag">Anxiety</span>
+                            <span class="tag">Mental Clarity</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Story 6 -->
+                <div class="story-card" data-category="energy">
+                    <div class="story-image">
+                        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Robert's Energy Boost">
+                        <div class="story-overlay">
+                            <div class="story-stats">
+                                <div class="stat">
+                                    <span class="number">+200%</span>
+                                    <span class="label">energy increase</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="number">8</span>
+                                    <span class="label">weeks</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="story-content">
+                        <h3>Robert's Energy Transformation</h3>
+                        <p class="story-summary">"Chronic fatigue and low energy levels were completely reversed through comprehensive Panchakarma treatment and proper nutrition."</p>
+                        <div class="story-details">
+                            <div class="therapy-type">
+                                <i class="fas fa-leaf"></i>
+                                <span>Complete Panchakarma</span>
+                            </div>
+                            <div class="duration">
+                                <i class="fas fa-clock"></i>
+                                <span>8 weeks</span>
+                            </div>
+                        </div>
+                        <div class="story-tags">
+                            <span class="tag">Energy Boost</span>
+                            <span class="tag">Fatigue Relief</span>
+                            <span class="tag">Vitality</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Story 7 -->
+                <div class="story-card" data-category="weight-loss">
+                    <div class="story-image">
+                        <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Maria's Wellness Journey">
+                        <div class="story-overlay">
+                            <div class="story-stats">
+                                <div class="stat">
+                                    <span class="number">-12</span>
+                                    <span class="label">kg lost</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="number">4</span>
+                                    <span class="label">months</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="story-content">
+                        <h3>Maria's Holistic Wellness</h3>
+                        <p class="story-summary">"Combined weight loss with overall wellness improvement. The program addressed my physical, mental, and emotional health comprehensively."</p>
+                        <div class="story-details">
+                            <div class="therapy-type">
+                                <i class="fas fa-leaf"></i>
+                                <span>Vamana + Virechana + Lifestyle</span>
+                            </div>
+                            <div class="duration">
+                                <i class="fas fa-clock"></i>
+                                <span>4 months</span>
+                            </div>
+                        </div>
+                        <div class="story-tags">
+                            <span class="tag">Weight Loss</span>
+                            <span class="tag">Holistic Health</span>
+                            <span class="tag">Wellness</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Story 8 -->
+                <div class="story-card" data-category="pain-relief">
+                    <div class="story-image">
+                        <img src="https://images.unsplash.com/photo-1582750433449-648ed127bb54?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="James's Back Pain Relief">
+                        <div class="story-overlay">
+                            <div class="story-stats">
+                                <div class="stat">
+                                    <span class="number">80%</span>
+                                    <span class="label">pain reduction</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="number">5</span>
+                                    <span class="label">weeks</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="story-content">
+                        <h3>James's Back Pain Recovery</h3>
+                        <p class="story-summary">"Chronic back pain from years of desk work was significantly reduced through targeted Basti therapy and posture correction."</p>
+                        <div class="story-details">
+                            <div class="therapy-type">
+                                <i class="fas fa-leaf"></i>
+                                <span>Basti + Massage + Yoga</span>
+                            </div>
+                            <div class="duration">
+                                <i class="fas fa-clock"></i>
+                                <span>5 weeks</span>
+                            </div>
+                        </div>
+                        <div class="story-tags">
+                            <span class="tag">Back Pain</span>
+                            <span class="tag">Posture</span>
+                            <span class="tag">Mobility</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Before & After Section -->
+    <section class="before-after">
+        <div class="container">
+            <h2>Before & After Transformations</h2>
+            <div class="transformation-grid">
+                <div class="transformation-card">
+                    <div class="before-after-images">
+                        <div class="image-container">
+                            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Before">
+                            <span class="image-label">Before</span>
+                        </div>
+                        <div class="arrow">
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                        <div class="image-container">
+                            <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="After">
+                            <span class="image-label">After</span>
+                        </div>
+                    </div>
+                    <div class="transformation-details">
+                        <h3>Sarah's Weight Loss Journey</h3>
+                        <p>Lost 15kg in 6 months through sustainable lifestyle changes and Panchakarma therapy</p>
+                        <div class="transformation-stats">
+                            <div class="stat">
+                                <span class="value">-15kg</span>
+                                <span class="label">Weight Loss</span>
+                            </div>
+                            <div class="stat">
+                                <span class="value">6 months</span>
+                                <span class="label">Duration</span>
+                            </div>
+                            <div class="stat">
+                                <span class="value">100%</span>
+                                <span class="label">Satisfied</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="transformation-card">
+                    <div class="before-after-images">
+                        <div class="image-container">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Before">
+                            <span class="image-label">Before</span>
+                        </div>
+                        <div class="arrow">
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                        <div class="image-container">
+                            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="After">
+                            <span class="image-label">After</span>
+                        </div>
+                    </div>
+                    <div class="transformation-details">
+                        <h3>Michael's Arthritis Recovery</h3>
+                        <p>90% reduction in joint pain and improved mobility through targeted Basti therapy</p>
+                        <div class="transformation-stats">
+                            <div class="stat">
+                                <span class="value">90%</span>
+                                <span class="label">Pain Reduction</span>
+                            </div>
+                            <div class="stat">
+                                <span class="value">3 months</span>
+                                <span class="label">Duration</span>
+                            </div>
+                            <div class="stat">
+                                <span class="value">95%</span>
+                                <span class="label">Mobility</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Testimonials -->
+    <section class="video-testimonials">
+        <div class="container">
+            <h2>Video Testimonials</h2>
+            <div class="video-grid">
+                <div class="video-card">
+                    <div class="video-thumbnail">
+                        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Video Thumbnail">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    <div class="video-info">
+                        <h4>Sarah's Complete Transformation</h4>
+                        <p>Watch Sarah share her incredible weight loss journey and how Panchakarma changed her life.</p>
+                        <span class="video-duration">3:45</span>
+                    </div>
+                </div>
+
+                <div class="video-card">
+                    <div class="video-thumbnail">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Video Thumbnail">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    <div class="video-info">
+                        <h4>Michael's Pain Relief Story</h4>
+                        <p>Hear how Michael overcame chronic arthritis pain through traditional Ayurvedic treatment.</p>
+                        <span class="video-duration">4:12</span>
+                    </div>
+                </div>
+
+                <div class="video-card">
+                    <div class="video-thumbnail">
+                        <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Video Thumbnail">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    <div class="video-info">
+                        <h4>Emily's Skin Transformation</h4>
+                        <p>Discover how Emily achieved clear, healthy skin after years of struggling with acne.</p>
+                        <span class="video-duration">2:58</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>PanchakarmaPro</h3>
+                    <p>Revolutionizing Ayurveda care with modern technology.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="features.html">Features</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 PanchakarmaPro. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Gallery filtering
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Remove active class from all buttons
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                // Add active class to clicked button
+                this.classList.add('active');
+                
+                const filter = this.getAttribute('data-filter');
+                const stories = document.querySelectorAll('.story-card');
+                
+                stories.forEach(story => {
+                    if (filter === 'all' || story.getAttribute('data-category') === filter) {
+                        story.style.display = 'block';
+                    } else {
+                        story.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Video play functionality
+        document.querySelectorAll('.play-button').forEach(btn => {
+            btn.addEventListener('click', function() {
+                // In a real application, this would open a video modal or redirect to video
+                alert('Video testimonial would play here. This is a demo.');
+            });
+        });
+    </script>
+</body>
+</html>

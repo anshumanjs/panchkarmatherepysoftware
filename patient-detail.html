@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Detail - PanchakarmaPro</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-leaf"></i>
+                <span>PanchakarmaPro</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="patient-dashboard.html" class="nav-link">Dashboard</a></li>
+                <li><a href="patient-detail.html" class="nav-link active">Patient Detail</a></li>
+                <li><a href="patient-report-dashboard.html" class="nav-link">Reports</a></li>
+                <li><a href="feedback.html" class="nav-link">Feedback</a></li>
+                <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+                <li><a href="#" class="nav-link" onclick="logout()">Logout</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Patient Detail Header -->
+    <section class="patient-detail-header">
+        <div class="container">
+            <div class="patient-info-card">
+                <div class="patient-avatar">
+                    <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80" alt="Patient Avatar" id="patientAvatar">
+                </div>
+                <div class="patient-basic-info">
+                    <h1 id="patientName">Sarah Johnson</h1>
+                    <p class="patient-id">Patient ID: <span id="patientId">P001234</span></p>
+                    <p class="patient-age">Age: <span id="patientAge">32</span> years</p>
+                    <p class="patient-gender">Gender: <span id="patientGender">Female</span></p>
+                    <div class="patient-status">
+                        <span class="status-badge active">Active Patient</span>
+                        <span class="last-visit">Last Visit: <span id="lastVisit">Dec 15, 2024</span></span>
+                    </div>
+                </div>
+                <div class="patient-actions">
+                    <button class="btn btn-outline" onclick="editPatientInfo()">
+                        <i class="fas fa-edit"></i>
+                        Edit Info
+                    </button>
+                    <button class="btn btn-primary" onclick="addNewProblem()">
+                        <i class="fas fa-plus"></i>
+                        Add Problem
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Patient Detail Content -->
+    <section class="patient-detail-content">
+        <div class="container">
+            <div class="detail-tabs">
+                <button class="tab-btn active" data-tab="overview">Overview</button>
+                <button class="tab-btn" data-tab="problems">Problems & Issues</button>
+                <button class="tab-btn" data-tab="improvements">Improvements</button>
+                <button class="tab-btn" data-tab="vitals">Vital Signs</button>
+                <button class="tab-btn" data-tab="therapy">Therapy Plan</button>
+                <button class="tab-btn" data-tab="notes">Notes</button>
+            </div>
+
+            <!-- Overview Tab -->
+            <div class="tab-content active" id="overview">
+                <div class="overview-grid">
+                    <div class="overview-card">
+                        <h3>Current Problems</h3>
+                        <div class="problem-summary">
+                            <div class="problem-item">
+                                <span class="problem-title">Chronic Back Pain</span>
+                                <span class="problem-severity severe">Severe</span>
+                            </div>
+                            <div class="problem-item">
+                                <span class="problem-title">Digestive Issues</span>
+                                <span class="problem-severity moderate">Moderate</span>
+                            </div>
+                            <div class="problem-item">
+                                <span class="problem-title">Sleep Disturbance</span>
+                                <span class="problem-severity mild">Mild</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="overview-card">
+                        <h3>Recent Improvements</h3>
+                        <div class="improvement-summary">
+                            <div class="improvement-item">
+                                <span class="improvement-title">Pain Reduction</span>
+                                <div class="improvement-bar">
+                                    <div class="improvement-fill" style="width: 75%"></div>
+                                </div>
+                                <span class="improvement-percentage">75%</span>
+                            </div>
+                            <div class="improvement-item">
+                                <span class="improvement-title">Sleep Quality</span>
+                                <div class="improvement-bar">
+                                    <div class="improvement-fill" style="width: 60%"></div>
+                                </div>
+                                <span class="improvement-percentage">60%</span>
+                            </div>
+                            <div class="improvement-item">
+                                <span class="improvement-title">Energy Levels</span>
+                                <div class="improvement-bar">
+                                    <div class="improvement-fill" style="width: 85%"></div>
+                                </div>
+                                <span class="improvement-percentage">85%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="overview-card">
+                        <h3>Dosha Assessment</h3>
+                        <div class="dosha-chart">
+                            <canvas id="doshaChart"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="overview-card">
+                        <h3>Vital Signs Trend</h3>
+                        <div class="vitals-chart">
+                            <canvas id="vitalsChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Problems Tab -->
+            <div class="tab-content" id="problems">
+                <div class="problems-header">
+                    <h3>Current Problems & Issues</h3>
+                    <button class="btn btn-primary" onclick="addNewProblem()">
+                        <i class="fas fa-plus"></i>
+                        Add New Problem
+                    </button>
+                </div>
+                <div class="problems-list">
+                    <div class="problem-card">
+                        <div class="problem-header">
+                            <h4>Chronic Back Pain</h4>
+                            <div class="problem-meta">
+                                <span class="severity severe">Severe</span>
+                                <span class="status active">Active</span>
+                                <span class="date">Reported: Dec 1, 2024</span>
+                            </div>
+                        </div>
+                        <div class="problem-description">
+                            <p>Lower back pain persisting for 6 months, affecting daily activities and sleep quality. Pain is worse in the morning and after prolonged sitting.</p>
+                        </div>
+                        <div class="problem-notes">
+                            <h5>Practitioner Notes:</h5>
+                            <div class="note-item">
+                                <p><strong>Dr. Rajesh Kumar - Dec 15, 2024:</strong> Patient shows significant improvement with Basti therapy. Pain scale reduced from 8/10 to 5/10. Continue current treatment plan.</p>
+                            </div>
+                            <div class="note-item">
+                                <p><strong>Dr. Priya Sharma - Dec 10, 2024:</strong> Initial assessment completed. Vata imbalance identified as primary cause. Recommended Virechana therapy.</p>
+                            </div>
+                        </div>
+                        <div class="problem-actions">
+                            <button class="btn btn-outline" onclick="editProblem('prob1')">Edit</button>
+                            <button class="btn btn-outline" onclick="addImprovement('prob1')">Add Improvement</button>
+                            <button class="btn btn-outline" onclick="addNote('prob1')">Add Note</button>
+                        </div>
+                    </div>
+
+                    <div class="problem-card">
+                        <div class="problem-header">
+                            <h4>Digestive Issues</h4>
+                            <div class="problem-meta">
+                                <span class="severity moderate">Moderate</span>
+                                <span class="status improving">Improving</span>
+                                <span class="date">Reported: Nov 20, 2024</span>
+                            </div>
+                        </div>
+                        <div class="problem-description">
+                            <p>Irregular bowel movements, bloating, and occasional stomach cramps. Symptoms worsen with certain foods and stress.</p>
+                        </div>
+                        <div class="problem-notes">
+                            <h5>Practitioner Notes:</h5>
+                            <div class="note-item">
+                                <p><strong>Dr. Rajesh Kumar - Dec 12, 2024:</strong> Virechana therapy showing positive results. Patient reports 70% improvement in symptoms.</p>
+                            </div>
+                        </div>
+                        <div class="problem-actions">
+                            <button class="btn btn-outline" onclick="editProblem('prob2')">Edit</button>
+                            <button class="btn btn-outline" onclick="addImprovement('prob2')">Add Improvement</button>
+                            <button class="btn btn-outline" onclick="addNote('prob2')">Add Note</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Improvements Tab -->
+            <div class="tab-content" id="improvements">
+                <div class="improvements-header">
+                    <h3>Improvement Tracking</h3>
+                    <button class="btn btn-primary" onclick="addNewImprovement()">
+                        <i class="fas fa-plus"></i>
+                        Record Improvement
+                    </button>
+                </div>
+                <div class="improvements-list">
+                    <div class="improvement-card">
+                        <div class="improvement-header">
+                            <h4>Back Pain Reduction</h4>
+                            <div class="improvement-meta">
+                                <span class="percentage">75%</span>
+                                <span class="date">Recorded: Dec 15, 2024</span>
+                            </div>
+                        </div>
+                        <div class="improvement-details">
+                            <div class="measurement">
+                                <span class="label">Pain Scale:</span>
+                                <span class="before">8/10</span>
+                                <i class="fas fa-arrow-right"></i>
+                                <span class="after">5/10</span>
+                            </div>
+                            <div class="measurement">
+                                <span class="label">Mobility:</span>
+                                <span class="before">Limited</span>
+                                <i class="fas fa-arrow-right"></i>
+                                <span class="after">Good</span>
+                            </div>
+                            <div class="improvement-chart">
+                                <canvas id="painChart"></canvas>
+                            </div>
+                        </div>
+                        <div class="improvement-notes">
+                            <p><strong>Notes:</strong> Significant improvement observed after 3 weeks of Basti therapy. Patient can now sit for longer periods without discomfort.</p>
+                        </div>
+                    </div>
+
+                    <div class="improvement-card">
+                        <div class="improvement-header">
+                            <h4>Sleep Quality Enhancement</h4>
+                            <div class="improvement-meta">
+                                <span class="percentage">60%</span>
+                                <span class="date">Recorded: Dec 10, 2024</span>
+                            </div>
+                        </div>
+                        <div class="improvement-details">
+                            <div class="measurement">
+                                <span class="label">Sleep Hours:</span>
+                                <span class="before">4-5 hours</span>
+                                <i class="fas fa-arrow-right"></i>
+                                <span class="after">6-7 hours</span>
+                            </div>
+                            <div class="measurement">
+                                <span class="label">Sleep Quality:</span>
+                                <span class="before">Poor</span>
+                                <i class="fas fa-arrow-right"></i>
+                                <span class="after">Good</span>
+                            </div>
+                        </div>
+                        <div class="improvement-notes">
+                            <p><strong>Notes:</strong> Nasya therapy and meditation practices have significantly improved sleep patterns.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Vital Signs Tab -->
+            <div class="tab-content" id="vitals">
+                <div class="vitals-header">
+                    <h3>Vital Signs History</h3>
+                    <button class="btn btn-primary" onclick="addVitalSigns()">
+                        <i class="fas fa-plus"></i>
+                        Record Vitals
+                    </button>
+                </div>
+                <div class="vitals-grid">
+                    <div class="vital-card">
+                        <h4>Blood Pressure</h4>
+                        <div class="vital-chart">
+                            <canvas id="bpChart"></canvas>
+                        </div>
+                        <div class="vital-current">
+                            <span class="current-value">120/80</span>
+                            <span class="current-label">mmHg</span>
+                        </div>
+                    </div>
+                    <div class="vital-card">
+                        <h4>Weight</h4>
+                        <div class="vital-chart">
+                            <canvas id="weightChart"></canvas>
+                        </div>
+                        <div class="vital-current">
+                            <span class="current-value">65.2</span>
+                            <span class="current-label">kg</span>
+                        </div>
+                    </div>
+                    <div class="vital-card">
+                        <h4>Heart Rate</h4>
+                        <div class="vital-chart">
+                            <canvas id="hrChart"></canvas>
+                        </div>
+                        <div class="vital-current">
+                            <span class="current-value">72</span>
+                            <span class="current-label">bpm</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Therapy Plan Tab -->
+            <div class="tab-content" id="therapy">
+                <div class="therapy-header">
+                    <h3>Current Therapy Plan</h3>
+                    <button class="btn btn-primary" onclick="updateTherapyPlan()">
+                        <i class="fas fa-edit"></i>
+                        Update Plan
+                    </button>
+                </div>
+                <div class="therapy-plan">
+                    <div class="therapy-card">
+                        <h4>Basti Therapy</h4>
+                        <div class="therapy-details">
+                            <div class="detail-item">
+                                <span class="label">Frequency:</span>
+                                <span class="value">Daily</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="label">Duration:</span>
+                                <span class="value">30 minutes</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="label">Practitioner:</span>
+                                <span class="value">Dr. Rajesh Kumar</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="label">Status:</span>
+                                <span class="value status-active">Active</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="therapy-card">
+                        <h4>Dietary Guidelines</h4>
+                        <div class="dietary-list">
+                            <div class="dietary-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Warm, easily digestible foods</span>
+                            </div>
+                            <div class="dietary-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Avoid cold and processed foods</span>
+                            </div>
+                            <div class="dietary-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Include ghee and herbal teas</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Notes Tab -->
+            <div class="tab-content" id="notes">
+                <div class="notes-header">
+                    <h3>Patient Notes</h3>
+                    <button class="btn btn-primary" onclick="addNewNote()">
+                        <i class="fas fa-plus"></i>
+                        Add Note
+                    </button>
+                </div>
+                <div class="notes-list">
+                    <div class="note-card">
+                        <div class="note-header">
+                            <h4>Progress Update</h4>
+                            <div class="note-meta">
+                                <span class="category general">General</span>
+                                <span class="date">Dec 15, 2024</span>
+                                <span class="author">Dr. Rajesh Kumar</span>
+                            </div>
+                        </div>
+                        <div class="note-content">
+                            <p>Patient showing excellent progress with current treatment plan. Pain levels have significantly reduced, and mobility has improved. Continue with Basti therapy for another week.</p>
+                        </div>
+                    </div>
+                    <div class="note-card">
+                        <div class="note-header">
+                            <h4>Dietary Compliance</h4>
+                            <div class="note-meta">
+                                <span class="category treatment">Treatment</span>
+                                <span class="date">Dec 12, 2024</span>
+                                <span class="author">Dr. Priya Sharma</span>
+                            </div>
+                        </div>
+                        <div class="note-content">
+                            <p>Patient is following dietary guidelines well. No adverse reactions to prescribed herbs. Continue current diet plan.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>PanchakarmaPro</h3>
+                    <p>Revolutionizing Ayurveda care with modern technology.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="patient-dashboard.html">Dashboard</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 PanchakarmaPro. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Check authentication
+        document.addEventListener('DOMContentLoaded', function() {
+            checkAuthentication();
+            initializeCharts();
+            loadPatientData();
+        });
+
+        function checkAuthentication() {
+            const token = localStorage.getItem('token');
+            const user = JSON.parse(localStorage.getItem('user') || '{}');
+            
+            if (!token || user.role !== 'patient') {
+                window.location.href = 'login.html';
+                return;
+            }
+        }
+
+        function initializeCharts() {
+            // Dosha Chart
+            const doshaCtx = document.getElementById('doshaChart').getContext('2d');
+            new Chart(doshaCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Vata', 'Pitta', 'Kapha'],
+                    datasets: [{
+                        data: [30, 25, 45],
+                        backgroundColor: ['#8b5cf6', '#f59e0b', '#10b981'],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'bottom'
+                        }
+                    }
+                }
+            });
+
+            // Vitals Chart
+            const vitalsCtx = document.getElementById('vitalsChart').getContext('2d');
+            new Chart(vitalsCtx, {
+                type: 'line',
+                data: {
+                    labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
+                    datasets: [{
+                        label: 'Blood Pressure (Systolic)',
+                        data: [140, 135, 130, 125],
+                        borderColor: '#dc2626',
+                        tension: 0.4
+                    }, {
+                        label: 'Weight (kg)',
+                        data: [68, 67, 66, 65.2],
+                        borderColor: '#059669',
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: false
+                        }
+                    }
+                }
+            });
+
+            // Pain Chart
+            const painCtx = document.getElementById('painChart').getContext('2d');
+            new Chart(painCtx, {
+                type: 'line',
+                data: {
+                    labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
+                    datasets: [{
+                        label: 'Pain Level (1-10)',
+                        data: [8, 7, 6, 5],
+                        borderColor: '#dc2626',
+                        backgroundColor: 'rgba(220, 38, 38, 0.1)',
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 10
+                        }
+                    }
+                }
+            });
+
+            // Blood Pressure Chart
+            const bpCtx = document.getElementById('bpChart').getContext('2d');
+            new Chart(bpCtx, {
+                type: 'line',
+                data: {
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                    datasets: [{
+                        label: 'Systolic',
+                        data: [140, 135, 130, 125, 120, 118],
+                        borderColor: '#dc2626',
+                        tension: 0.4
+                    }, {
+                        label: 'Diastolic',
+                        data: [90, 88, 85, 82, 80, 78],
+                        borderColor: '#059669',
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+
+            // Weight Chart
+            const weightCtx = document.getElementById('weightChart').getContext('2d');
+            new Chart(weightCtx, {
+                type: 'line',
+                data: {
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                    datasets: [{
+                        label: 'Weight (kg)',
+                        data: [70, 69, 68, 67, 66, 65.2],
+                        borderColor: '#059669',
+                        backgroundColor: 'rgba(5, 150, 105, 0.1)',
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: false
+                        }
+                    }
+                }
+            });
+
+            // Heart Rate Chart
+            const hrCtx = document.getElementById('hrChart').getContext('2d');
+            new Chart(hrCtx, {
+                type: 'line',
+                data: {
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                    datasets: [{
+                        label: 'Heart Rate (bpm)',
+                        data: [85, 82, 80, 78, 75, 72],
+                        borderColor: '#f59e0b',
+                        backgroundColor: 'rgba(245, 158, 11, 0.1)',
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: false
+                        }
+                    }
+                }
+            });
+        }
+
+        function loadPatientData() {
+            // Load patient data from API
+            const user = JSON.parse(localStorage.getItem('user') || '{}');
+            document.getElementById('patientName').textContent = user.firstName + ' ' + user.lastName;
+            document.getElementById('patientId').textContent = 'P' + user._id.slice(-6).toUpperCase();
+        }
+
+        // Tab switching
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const tab = this.getAttribute('data-tab');
+                switchTab(tab);
+            });
+        });
+
+        function switchTab(tab) {
+            // Update active tab button
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.querySelector(`[data-tab="${tab}"]`).classList.add('active');
+
+            // Show/hide tab content
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            document.getElementById(tab).classList.add('active');
+        }
+
+        // Action functions
+        function editPatientInfo() {
+            alert('Edit patient info functionality would open here.');
+        }
+
+        function addNewProblem() {
+            alert('Add new problem form would open here.');
+        }
+
+        function addNewImprovement() {
+            alert('Add new improvement form would open here.');
+        }
+
+        function addVitalSigns() {
+            alert('Add vital signs form would open here.');
+        }
+
+        function updateTherapyPlan() {
+            alert('Update therapy plan form would open here.');
+        }
+
+        function addNewNote() {
+            alert('Add new note form would open here.');
+        }
+
+        function editProblem(problemId) {
+            alert(`Edit problem ${problemId} form would open here.`);
+        }
+
+        function addImprovement(problemId) {
+            alert(`Add improvement for problem ${problemId} form would open here.`);
+        }
+
+        function addNote(problemId) {
+            alert(`Add note for problem ${problemId} form would open here.`);
+        }
+
+        function logout() {
+            if (confirm('Are you sure you want to logout?')) {
+                localStorage.removeItem('token');
+                localStorage.removeItem('user');
+                localStorage.removeItem('userType');
+                window.location.href = 'login.html';
+            }
+        }
+    </script>
+</body>
+</html>

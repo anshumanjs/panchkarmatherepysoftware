@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practitioner Dashboard - Panchakarma Management Software</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-leaf"></i>
+                <span>PanchakarmaPro</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="features.html" class="nav-link">Features</a></li>
+                <li><a href="patient-dashboard.html" class="nav-link">Patient Portal</a></li>
+                <li><a href="practitioner-dashboard.html" class="nav-link active">Practitioner Portal</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Dashboard Header -->
+    <section class="dashboard-header">
+        <div class="container">
+            <h1 class="dashboard-title">Practitioner Dashboard</h1>
+            <p class="dashboard-subtitle">Manage your patients, schedule sessions, and track therapy outcomes</p>
+        </div>
+    </section>
+
+    <!-- Dashboard Content -->
+    <section class="dashboard">
+        <div class="container">
+            <!-- Quick Stats -->
+            <div class="practitioner-stats">
+                <div class="stat-card">
+                    <div class="stat-number">24</div>
+                    <p class="stat-label">Active Patients</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">8</div>
+                    <p class="stat-label">Sessions Today</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">156</div>
+                    <p class="stat-label">Total Sessions</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">4.8</div>
+                    <p class="stat-label">Avg. Rating</p>
+                </div>
+            </div>
+
+            <!-- Main Content Grid -->
+            <div class="main-content-grid">
+                <!-- Patient Management -->
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3 class="card-title">Patient Management</h3>
+                    </div>
+                    <div class="card-content">
+                        <div class="patient-list">
+                            <div class="patient-list-header">
+                                <h3>Recent Patients</h3>
+                                <input type="text" class="search-input" placeholder="Search patients...">
+                            </div>
+                            <div class="patient-item">
+                                <div class="patient-info">
+                                    <h4>Sarah Johnson</h4>
+                                    <p>Abhyanga Therapy - Session 6/8</p>
+                                </div>
+                                <span class="patient-status status-active">Active</span>
+                            </div>
+                            <div class="patient-item">
+                                <div class="patient-info">
+                                    <h4>Michael Chen</h4>
+                                    <p>Shirodhara Therapy - Session 3/6</p>
+                                </div>
+                                <span class="patient-status status-pending">Pending</span>
+                            </div>
+                            <div class="patient-item">
+                                <div class="patient-info">
+                                    <h4>Emily Rodriguez</h4>
+                                    <p>Basti Therapy - Session 8/8</p>
+                                </div>
+                                <span class="patient-status status-completed">Completed</span>
+                            </div>
+                            <div class="patient-item">
+                                <div class="patient-info">
+                                    <h4>David Kumar</h4>
+                                    <p>Abhyanga Therapy - Session 2/8</p>
+                                </div>
+                                <span class="patient-status status-active">Active</span>
+                            </div>
+                        </div>
+                        <div class="text-center" style="padding: 1rem;">
+                            <a href="#" class="btn btn-outline">View All Patients</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Today's Schedule -->
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-calendar-day"></i>
+                        </div>
+                        <h3 class="card-title">Today's Schedule</h3>
+                    </div>
+                    <div class="card-content">
+                        <div class="schedule-container">
+                            <div class="schedule-item">
+                                <div>
+                                    <div class="schedule-time">9:00 AM</div>
+                                    <div class="schedule-details">Abhyanga - Sarah Johnson</div>
+                                </div>
+                                <span class="status-badge status-confirmed">Confirmed</span>
+                            </div>
+                            <div class="schedule-item">
+                                <div>
+                                    <div class="schedule-time">11:00 AM</div>
+                                    <div class="schedule-details">Shirodhara - Michael Chen</div>
+                                </div>
+                                <span class="status-badge status-confirmed">Confirmed</span>
+                            </div>
+                            <div class="schedule-item">
+                                <div>
+                                    <div class="schedule-time">2:00 PM</div>
+                                    <div class="schedule-details">Basti - Emily Rodriguez</div>
+                                </div>
+                                <span class="status-badge status-pending">Pending</span>
+                            </div>
+                            <div class="schedule-item">
+                                <div>
+                                    <div class="schedule-time">4:00 PM</div>
+                                    <div class="schedule-details">Abhyanga - David Kumar</div>
+                                </div>
+                                <span class="status-badge status-confirmed">Confirmed</span>
+                            </div>
+                        </div>
+                        <div class="text-center" style="padding: 1rem;">
+                            <a href="#" class="btn btn-outline">View Full Schedule</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Weekly Schedule Overview -->
+            <div class="dashboard-card">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <i class="fas fa-calendar-week"></i>
+                    </div>
+                    <h3 class="card-title">Weekly Schedule Overview</h3>
+                </div>
+                <div class="card-content">
+                    <div class="schedule-grid">
+                        <div class="schedule-card">
+                            <h4>Monday</h4>
+                            <div class="schedule-item">
+                                <div>
+                                    <div class="schedule-time">9:00 AM</div>
+                                    <div class="schedule-details">Abhyanga - Sarah J.</div>
+                                </div>
+                                <div class="schedule-actions">
+                                    <button class="btn btn-small btn-edit">Edit</button>
+                                </div>
+                            </div>
+                            <div class="schedule-item">
+                                <div>
+                                    <div class="schedule-time">2:00 PM</div>
+                                    <div class="schedule-details">Basti - Emily R.</div>
+                                </div>
+                                <div class="schedule-actions">
+                                    <button class="btn btn-small btn-edit">Edit</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="schedule-card">
+                            <h4>Tuesday</h4>
+                            <div class="schedule-item">
+                                <div>
+                                    <div class="schedule-time">10:00 AM</div>
+                                    <div class="schedule-details">Shirodhara - Michael C.</div>
+                                </div>
+                                <div class="schedule-actions">
+                                    <button class="btn btn-small btn-edit">Edit</button>
+                                </div>
+                            </div>
+                            <div class="schedule-item">
+                                <div>
+                                    <div class="schedule-time">3:00 PM</div>
+                                    <div class="schedule-details">Abhyanga - David K.</div>
+                                </div>
+                                <div class="schedule-actions">
+                                    <button class="btn btn-small btn-edit">Edit</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="schedule-card">
+                            <h4>Wednesday</h4>
+                            <div class="schedule-item">
+                                <div>
+                                    <div class="schedule-time">9:30 AM</div>
+                                    <div class="schedule-details">Abhyanga - Sarah J.</div>
+                                </div>
+                                <div class="schedule-actions">
+                                    <button class="btn btn-small btn-edit">Edit</button>
+                                </div>
+                            </div>
+                            <div class="schedule-item">
+                                <div>
+                                    <div class="schedule-time">1:30 PM</div>
+                                    <div class="schedule-details">Basti - Emily R.</div>
+                                </div>
+                                <div class="schedule-actions">
+                                    <button class="btn btn-small btn-edit">Edit</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="schedule-card">
+                            <h4>Thursday</h4>
+                            <div class="schedule-item">
+                                <div>
+                                    <div class="schedule-time">11:00 AM</div>
+                                    <div class="schedule-details">Shirodhara - Michael C.</div>
+                                </div>
+                                <div class="schedule-actions">
+                                    <button class="btn btn-small btn-edit">Edit</button>
+                                </div>
+                            </div>
+                            <div class="schedule-item">
+                                <div>
+                                    <div class="schedule-time">4:00 PM</div>
+                                    <div class="schedule-details">Abhyanga - David K.</div>
+                                </div>
+                                <div class="schedule-actions">
+                                    <button class="btn btn-small btn-edit">Edit</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="schedule-card">
+                            <h4>Friday</h4>
+                            <div class="schedule-item">
+                                <div>
+                                    <div class="schedule-time">10:30 AM</div>
+                                    <div class="schedule-details">Abhyanga - Sarah J.</div>
+                                </div>
+                                <div class="schedule-actions">
+                                    <button class="btn btn-small btn-edit">Edit</button>
+                                </div>
+                            </div>
+                            <div class="schedule-item">
+                                <div>
+                                    <div class="schedule-time">2:30 PM</div>
+                                    <div class="schedule-details">Basti - Emily R.</div>
+                                </div>
+                                <div class="schedule-actions">
+                                    <button class="btn btn-small btn-edit">Edit</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Patient Feedback & Analytics -->
+            <div class="main-content-grid">
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-comments"></i>
+                        </div>
+                        <h3 class="card-title">Recent Patient Feedback</h3>
+                    </div>
+                    <div class="card-content">
+                        <div class="feedback-item">
+                            <div class="feedback-header">
+                                <h4>Sarah Johnson - Abhyanga</h4>
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                            <p>"Excellent session! The therapist was very professional and the treatment was very relaxing. I feel much better after the session."</p>
+                            <span class="feedback-date">2 hours ago</span>
+                        </div>
+                        <div class="feedback-item">
+                            <div class="feedback-header">
+                                <h4>Michael Chen - Shirodhara</h4>
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                </div>
+                            </div>
+                            <p>"Good session overall. The oil temperature was perfect and I felt very relaxed. Would recommend to others."</p>
+                            <span class="feedback-date">1 day ago</span>
+                        </div>
+                        <div class="feedback-item">
+                            <div class="feedback-header">
+                                <h4>Emily Rodriguez - Basti</h4>
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                            <p>"Amazing experience! The Basti treatment was very effective and I can already feel the benefits. Thank you!"</p>
+                            <span class="feedback-date">2 days ago</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-chart-pie"></i>
+                        </div>
+                        <h3 class="card-title">Therapy Analytics</h3>
+                    </div>
+                    <div class="card-content">
+                        <div class="analytics-item">
+                            <div class="analytics-label">
+                                <span>Abhyanga Sessions</span>
+                                <span class="analytics-value">45</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" data-percentage="75"></div>
+                            </div>
+                        </div>
+                        <div class="analytics-item">
+                            <div class="analytics-label">
+                                <span>Shirodhara Sessions</span>
+                                <span class="analytics-value">32</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" data-percentage="60"></div>
+                            </div>
+                        </div>
+                        <div class="analytics-item">
+                            <div class="analytics-label">
+                                <span>Basti Sessions</span>
+                                <span class="analytics-value">28</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" data-percentage="45"></div>
+                            </div>
+                        </div>
+                        <div class="analytics-item">
+                            <div class="analytics-label">
+                                <span>Other Therapies</span>
+                                <span class="analytics-value">15</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" data-percentage="25"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <i class="fas fa-leaf"></i>
+                        <span>PanchakarmaPro</span>
+                    </div>
+                    <p>Modernizing traditional Ayurveda care with cutting-edge technology for better patient outcomes.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="features.html">Features</a></li>
+                        <li><a href="patient-dashboard.html">Patient Portal</a></li>
+                        <li><a href="practitioner-dashboard.html">Practitioner Portal</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <p><i class="fas fa-envelope"></i> support@panchakarmapro.com</p>
+                    <p><i class="fas fa-phone"></i> +1 (555) 123-4567</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 PanchakarmaPro. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/api.js"></script>
+    <script src="script.js"></script>
+    <script>
+        let user = null;
+        let appointments = [];
+        let patients = [];
+        let feedbacks = [];
+        let notifications = [];
+
+        // Initialize dashboard
+        document.addEventListener('DOMContentLoaded', function() {
+            checkAuthentication();
+            loadDashboardData();
+            loadNotifications();
+            setupEventListeners();
+        });
+
+        function checkAuthentication() {
+            const token = localStorage.getItem('token');
+            user = JSON.parse(localStorage.getItem('user') || '{}');
+            
+            if (!token || user.role !== 'practitioner') {
+                window.location.href = 'practitioner-login.html';
+                return;
+            }
+
+            // Update welcome message
+            document.querySelector('.dashboard-title').textContent = `Welcome back, Dr. ${user.firstName}!`;
+        }
+
+        async function loadDashboardData() {
+            try {
+                // Load appointments
+                const appointmentsResponse = await fetch('/api/appointments', {
+                    headers: {
+                        'Authorization': `Bearer ${localStorage.getItem('token')}`
+                    }
+                });
+                const appointmentsResult = await appointmentsResponse.json();
+                
+                if (appointmentsResult.success) {
+                    appointments = appointmentsResult.data.appointments;
+                    displayAppointments();
+                    updateStats();
+                }
+
+                // Load patients
+                await loadPatients();
+
+                // Load feedbacks
+                await loadFeedbacks();
+
+                // Load analytics
+                loadAnalytics();
+            } catch (error) {
+                console.error('Error loading dashboard data:', error);
+                showNotification('Failed to load dashboard data', 'error');
+            }
+        }
+
+        async function loadPatients() {
+            try {
+                const response = await fetch('/api/patients', {
+                    headers: {
+                        'Authorization': `Bearer ${localStorage.getItem('token')}`
+                    }
+                });
+                const result = await response.json();
+                
+                if (result.success) {
+                    patients = result.data;
+                    displayPatients();
+                }
+            } catch (error) {
+                console.error('Error loading patients:', error);
+            }
+        }
+
+        async function loadFeedbacks() {
+            try {
+                const response = await fetch('/api/feedback', {
+                    headers: {
+                        'Authorization': `Bearer ${localStorage.getItem('token')}`
+                    }
+                });
+                const result = await response.json();
+                
+                if (result.success) {
+                    feedbacks = result.data;
+                    displayFeedbacks();
+                }
+            } catch (error) {
+                console.error('Error loading feedbacks:', error);
+            }
+        }
+
+        async function loadNotifications() {
+            try {
+                const response = await fetch('/api/notifications', {
+                    headers: {
+                        'Authorization': `Bearer ${localStorage.getItem('token')}`
+                    }
+                });
+                const result = await response.json();
+                
+                if (result.success) {
+                    notifications = result.data;
+                    displayNotifications();
+                }
+            } catch (error) {
+                console.error('Error loading notifications:', error);
+            }
+        }
+
+        function displayAppointments() {
+            const todayAppointments = appointments.filter(apt => {
+                const aptDate = new Date(apt.scheduledDate);
+                const today = new Date();
+                return aptDate.toDateString() === today.toDateString() && apt.status !== 'cancelled';
+            }).sort((a, b) => a.startTime.localeCompare(b.startTime));
+
+            const upcomingAppointments = appointments.filter(apt => {
+                const aptDate = new Date(apt.scheduledDate);
+                const today = new Date();
+                return aptDate > today && apt.status !== 'cancelled';
+            }).sort((a, b) => new Date(a.scheduledDate) - new Date(b.scheduledDate)).slice(0, 5);
+
+            // Display today's appointments
+            const todayContainer = document.getElementById('todayAppointments');
+            if (todayContainer) {
+                todayContainer.innerHTML = '';
+                if (todayAppointments.length === 0) {
+                    todayContainer.innerHTML = '<p style="text-align: center; color: #64748b; padding: 1rem;">No appointments today</p>';
+                } else {
+                    todayAppointments.forEach(appointment => {
+                        const appointmentElement = document.createElement('div');
+                        appointmentElement.className = 'schedule-item';
+                        appointmentElement.innerHTML = `
+                            <div>
+                                <div class="schedule-time">${appointment.startTime} - ${appointment.endTime}</div>
+                                <div class="schedule-details">${appointment.therapyType} - ${appointment.patient.userId.firstName} ${appointment.patient.userId.lastName}</div>
+                            </div>
+                            <div class="schedule-actions">
+                                <button class="btn-small btn-edit" onclick="updateAppointmentStatus('${appointment._id}', 'in-progress')">Start</button>
+                                <button class="btn-small btn-cancel" onclick="updateAppointmentStatus('${appointment._id}', 'completed')">Complete</button>
+                            </div>
+                        `;
+                        todayContainer.appendChild(appointmentElement);
+                    });
+                }
+            }
+
+            // Display upcoming appointments
+            const upcomingContainer = document.getElementById('upcomingAppointments');
+            if (upcomingContainer) {
+                upcomingContainer.innerHTML = '';
+                if (upcomingAppointments.length === 0) {
+                    upcomingContainer.innerHTML = '<p style="text-align: center; color: #64748b; padding: 1rem;">No upcoming appointments</p>';
+                } else {
+                    upcomingAppointments.forEach(appointment => {
+                        const appointmentElement = document.createElement('div');
+                        appointmentElement.className = 'schedule-item';
+                        appointmentElement.innerHTML = `
+                            <div>
+                                <div class="schedule-time">${new Date(appointment.scheduledDate).toLocaleDateString()} at ${appointment.startTime}</div>
+                                <div class="schedule-details">${appointment.therapyType} - ${appointment.patient.userId.firstName} ${appointment.patient.userId.lastName}</div>
+                            </div>
+                            <span class="status-badge status-${appointment.status}">${appointment.status}</span>
+                        `;
+                        upcomingContainer.appendChild(appointmentElement);
+                    });
+                }
+            }
+        }
+
+        function displayPatients() {
+            const container = document.getElementById('patientList');
+            if (!container) return;
+
+            const recentPatients = patients.slice(0, 5);
+            container.innerHTML = '';
+
+            if (recentPatients.length === 0) {
+                container.innerHTML = '<p style="text-align: center; color: #64748b; padding: 1rem;">No patients found</p>';
+                return;
+            }
+
+            recentPatients.forEach(patient => {
+                const patientElement = document.createElement('div');
+                patientElement.className = 'patient-item';
+                patientElement.innerHTML = `
+                    <div class="patient-info">
+                        <h4>${patient.userId.firstName} ${patient.userId.lastName}</h4>
+                        <p>${patient.userId.email}</p>
+                    </div>
+                    <span class="patient-status status-active">Active</span>
+                `;
+                container.appendChild(patientElement);
+            });
+        }
+
+        function displayFeedbacks() {
+            const container = document.getElementById('recentFeedbacks');
+            if (!container) return;
+
+            const recentFeedbacks = feedbacks.slice(0, 3);
+            container.innerHTML = '';
+
+            if (recentFeedbacks.length === 0) {
+                container.innerHTML = '<p style="text-align: center; color: #64748b; padding: 1rem;">No feedback received</p>';
+                return;
+            }
+
+            recentFeedbacks.forEach(feedback => {
+                const feedbackElement = document.createElement('div');
+                feedbackElement.className = 'feedback-item';
+                feedbackElement.innerHTML = `
+                    <div class="feedback-header">
+                        <h4>${feedback.patient.userId.firstName} ${feedback.patient.userId.lastName}</h4>
+                        <div class="rating">
+                            ${'★'.repeat(feedback.rating)}${'☆'.repeat(5 - feedback.rating)}
+                        </div>
+                    </div>
+                    <p>${feedback.comment}</p>
+                    <div class="feedback-date">${new Date(feedback.createdAt).toLocaleDateString()}</div>
+                `;
+                container.appendChild(feedbackElement);
+            });
+        }
+
+        function displayNotifications() {
+            const container = document.getElementById('notifications');
+            if (!container) return;
+
+            const recentNotifications = notifications
+                .filter(notif => !notif.isRead)
+                .slice(0, 3);
+
+            container.innerHTML = '';
+
+            if (recentNotifications.length === 0) {
+                container.innerHTML = '<p style="text-align: center; color: #64748b; padding: 1rem;">No new notifications</p>';
+                return;
+            }
+
+            recentNotifications.forEach(notification => {
+                const notificationElement = document.createElement('div');
+                notificationElement.className = 'notification-item';
+                notificationElement.innerHTML = `
+                    <div class="notification-icon">
+                        <i class="fas fa-${getNotificationIcon(notification.type)}"></i>
+                    </div>
+                    <div class="notification-content">
+                        <h4>${notification.title}</h4>
+                        <p>${notification.message}</p>
+                        <div class="notification-time">${new Date(notification.createdAt).toLocaleString()}</div>
+                    </div>
+                `;
+                container.appendChild(notificationElement);
+            });
+        }
+
+        function getNotificationIcon(type) {
+            const icons = {
+                'appointment_confirmation': 'calendar-check',
+                'appointment_reminder': 'bell',
+                'feedback_received': 'comments',
+                'patient_registration': 'user-plus',
+                'general': 'info-circle'
+            };
+            return icons[type] || 'info-circle';
+        }
+
+        function updateStats() {
+            const totalAppointments = appointments.length;
+            const todayAppointments = appointments.filter(apt => {
+                const aptDate = new Date(apt.scheduledDate);
+                const today = new Date();
+                return aptDate.toDateString() === today.toDateString();
+            }).length;
+            const completedAppointments = appointments.filter(apt => apt.status === 'completed').length;
+            const totalPatients = patients.length;
+
+            // Update stat numbers
+            const statElements = document.querySelectorAll('.stat-number');
+            if (statElements[0]) statElements[0].textContent = todayAppointments;
+            if (statElements[1]) statElements[1].textContent = totalPatients;
+            if (statElements[2]) statElements[2].textContent = completedAppointments;
+            if (statElements[3]) statElements[3].textContent = totalAppointments;
+        }
+
+        function loadAnalytics() {
+            // Simulate analytics data
+            const analyticsData = [
+                { label: 'Patient Satisfaction', value: '4.8/5' },
+                { label: 'Appointments This Month', value: '24' },
+                { label: 'Average Session Duration', value: '45 min' },
+                { label: 'Revenue This Month', value: '$2,400' }
+            ];
+
+            const container = document.getElementById('analytics');
+            if (!container) return;
+
+            container.innerHTML = '';
+
+            analyticsData.forEach(analytics => {
+                const analyticsElement = document.createElement('div');
+                analyticsElement.className = 'analytics-item';
+                analyticsElement.innerHTML = `
+                    <div class="analytics-label">
+                        <span>${analytics.label}</span>
+                        <span class="analytics-value">${analytics.value}</span>
+                    </div>
+                `;
+                container.appendChild(analyticsElement);
+            });
+        }
+
+        async function updateAppointmentStatus(appointmentId, status) {
+            try {
+                const response = await fetch(`/api/appointments/${appointmentId}/status`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${localStorage.getItem('token')}`
+                    },
+                    body: JSON.stringify({ status })
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    showNotification(`Appointment ${status} successfully`, 'success');
+                    loadDashboardData(); // Refresh data
+                } else {
+                    showNotification(result.message || 'Failed to update appointment', 'error');
+                }
+            } catch (error) {
+                console.error('Error updating appointment status:', error);
+                showNotification('Failed to update appointment status', 'error');
+            }
+        }
+
+        function setupEventListeners() {
+            // Add any additional event listeners here
+        }
+
+        function logout() {
+            localStorage.removeItem('token');
+            localStorage.removeItem('user');
+            window.location.href = 'index.html';
+        }
+
+        function showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            notification.className = `notification notification-${type}`;
+            notification.innerHTML = `
+                <i class="fas fa-${type === 'error' ? 'exclamation-circle' : type === 'success' ? 'check-circle' : 'info-circle'}"></i>
+                <span>${message}</span>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => notification.classList.add('show'), 100);
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+                setTimeout(() => notification.remove(), 300);
+            }, 5000);
+        }
+
+        // Auto-refresh dashboard every 5 minutes
+        setInterval(() => {
+            loadDashboardData();
+            loadNotifications();
+        }, 300000);
+    </script>
+</body>
+</html>

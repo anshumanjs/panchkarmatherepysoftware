@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Dashboard - Panchakarma Management Software</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-leaf"></i>
+                <span>PanchakarmaPro</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="patient-dashboard.html" class="nav-link active">Dashboard</a></li>
+                <li><a href="therapy-booking.html" class="nav-link">Book Therapy</a></li>
+                <li><a href="patient-dashboard.html" class="nav-link">My Appointments</a></li>
+                <li><a href="patient-dashboard.html" class="nav-link">My Progress</a></li>
+                <li><a href="#" class="nav-link" onclick="logout()">Logout</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Dashboard Header -->
+    <section class="dashboard-header">
+        <div class="container">
+            <div class="header-content">
+                <div class="user-info">
+                    <div class="user-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="user-details">
+                        <h1 class="dashboard-title">Welcome back, <span id="userName">Sarah</span>!</h1>
+                        <p class="user-email" id="userEmail">sarah@example.com</p>
+                        <div class="user-status">
+                            <span class="status-indicator active"></span>
+                            <span>Active Member</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="header-actions">
+                    <div class="wallet-balance">
+                        <i class="fas fa-wallet"></i>
+                        <span>₹<span id="walletBalance">2,500</span></span>
+                    </div>
+                    <button class="btn btn-primary" onclick="openPaymentModal()">
+                        <i class="fas fa-plus"></i>
+                        Add Funds
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dashboard Content -->
+    <section class="dashboard">
+        <div class="container">
+            <!-- Therapy Packages -->
+            <div class="packages-section">
+                <h2>Available Therapy Packages</h2>
+                <div class="packages-grid">
+                    <div class="package-card featured">
+                        <div class="package-header">
+                            <h3>First Session</h3>
+                            <div class="package-price">
+                                <span class="currency">₹</span>
+                                <span class="amount">2,499</span>
+                                <span class="period">one-time</span>
+                            </div>
+                        </div>
+                        <div class="package-features">
+                            <ul>
+                                <li><i class="fas fa-check"></i> Complete health assessment</li>
+                                <li><i class="fas fa-check"></i> Personalized therapy plan</li>
+                                <li><i class="fas fa-check"></i> 60-minute session</li>
+                                <li><i class="fas fa-check"></i> Post-session consultation</li>
+                            </ul>
+                        </div>
+                        <button class="btn btn-primary package-btn" onclick="bookTherapy('first-session')">
+                            Book First Session
+                        </button>
+                    </div>
+                    
+                    <div class="package-card">
+                        <div class="package-header">
+                            <h3>Regular Session</h3>
+                            <div class="package-price">
+                                <span class="currency">₹</span>
+                                <span class="amount">999</span>
+                                <span class="period">per session</span>
+                            </div>
+                        </div>
+                        <div class="package-features">
+                            <ul>
+                                <li><i class="fas fa-check"></i> 45-minute therapy session</li>
+                                <li><i class="fas fa-check"></i> Progress tracking</li>
+                                <li><i class="fas fa-check"></i> Follow-up consultation</li>
+                                <li><i class="fas fa-check"></i> Home care guidance</li>
+                            </ul>
+                        </div>
+                        <button class="btn btn-outline package-btn" onclick="bookTherapy('regular-session')">
+                            Book Session
+                        </button>
+                    </div>
+
+                    <div class="package-card">
+                        <div class="package-header">
+                            <h3>Monthly Package</h3>
+                            <div class="package-price">
+                                <span class="currency">₹</span>
+                                <span class="amount">3,999</span>
+                                <span class="period">per month</span>
+                            </div>
+                            <div class="package-savings">Save 20%</div>
+                        </div>
+                        <div class="package-features">
+                            <ul>
+                                <li><i class="fas fa-check"></i> 4 therapy sessions</li>
+                                <li><i class="fas fa-check"></i> Unlimited consultations</li>
+                                <li><i class="fas fa-check"></i> Priority booking</li>
+                                <li><i class="fas fa-check"></i> Home remedies kit</li>
+                            </ul>
+                        </div>
+                        <button class="btn btn-outline package-btn" onclick="bookTherapy('monthly-package')">
+                            Subscribe
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Stats -->
+            <div class="dashboard-grid">
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-calendar-check"></i>
+                        </div>
+                        <h3 class="card-title">Upcoming Sessions</h3>
+                    </div>
+                    <div class="card-content">
+                        <div class="stat-number">3</div>
+                        <p class="stat-description">Sessions scheduled this week</p>
+                    </div>
+                </div>
+
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3 class="card-title">Therapy Progress</h3>
+                    </div>
+                    <div class="card-content">
+                        <div class="progress-container">
+                            <div class="progress-bar">
+                                <div class="progress-fill" data-percentage="75"></div>
+                            </div>
+                            <p class="progress-text">75% Complete</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-bell"></i>
+                        </div>
+                        <h3 class="card-title">Notifications</h3>
+                    </div>
+                    <div class="card-content">
+                        <div class="stat-number">5</div>
+                        <p class="stat-description">New notifications</p>
+                    </div>
+                </div>
+
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <h3 class="card-title">Wellness Score</h3>
+                    </div>
+                    <div class="card-content">
+                        <div class="stat-number">8.5</div>
+                        <p class="stat-description">Out of 10</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Content Grid -->
+            <div class="main-content-grid">
+                <!-- Therapy Progress -->
+                <div class="dashboard-card progress-card">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-chart-bar"></i>
+                        </div>
+                        <h3 class="card-title">Therapy Progress</h3>
+                    </div>
+                    <div class="card-content">
+                        <div class="therapy-progress">
+                            <div class="therapy-item">
+                                <div class="therapy-info">
+                                    <h4>Abhyanga</h4>
+                                    <p class="sessions-text">6/8 sessions completed</p>
+                                </div>
+                                <div class="progress-container">
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" data-percentage="75"></div>
+                                    </div>
+                                    <span class="progress-percentage">75%</span>
+                                </div>
+                            </div>
+                            <div class="therapy-item">
+                                <div class="therapy-info">
+                                    <h4>Shirodhara</h4>
+                                    <p class="sessions-text">3/6 sessions completed</p>
+                                </div>
+                                <div class="progress-container">
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" data-percentage="50"></div>
+                                    </div>
+                                    <span class="progress-percentage">50%</span>
+                                </div>
+                            </div>
+                            <div class="therapy-item">
+                                <div class="therapy-info">
+                                    <h4>Basti</h4>
+                                    <p class="sessions-text">2/8 sessions completed</p>
+                                </div>
+                                <div class="progress-container">
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" data-percentage="25"></div>
+                                    </div>
+                                    <span class="progress-percentage">25%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Upcoming Appointments -->
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                        <h3 class="card-title">Upcoming Appointments</h3>
+                    </div>
+                    <div class="card-content">
+                        <div class="schedule-container">
+                            <!-- Schedule items will be populated by JavaScript -->
+                        </div>
+                        <div class="text-center">
+                            <a href="#" class="btn btn-outline">View All Appointments</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Notifications -->
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-bell"></i>
+                        </div>
+                        <h3 class="card-title">Recent Notifications</h3>
+                    </div>
+                    <div class="card-content">
+                        <div class="notifications-container">
+                            <!-- Notifications will be populated by JavaScript -->
+                        </div>
+                        <div class="text-center">
+                            <a href="#" class="btn btn-outline">View All Notifications</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Feedback Form -->
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-comment"></i>
+                        </div>
+                        <h3 class="card-title">Session Feedback</h3>
+                    </div>
+                    <div class="card-content">
+                        <form id="feedback-form" class="feedback-form">
+                            <div class="form-group">
+                                <label for="session-type">Session Type</label>
+                                <select id="session-type" required>
+                                    <option value="">Select session type</option>
+                                    <option value="abhyanga">Abhyanga</option>
+                                    <option value="shirodhara">Shirodhara</option>
+                                    <option value="basti">Basti</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="rating">Overall Experience</label>
+                                <div class="rating-input">
+                                    <input type="radio" id="star5" name="rating" value="5">
+                                    <label for="star5"><i class="fas fa-star"></i></label>
+                                    <input type="radio" id="star4" name="rating" value="4">
+                                    <label for="star4"><i class="fas fa-star"></i></label>
+                                    <input type="radio" id="star3" name="rating" value="3">
+                                    <label for="star3"><i class="fas fa-star"></i></label>
+                                    <input type="radio" id="star2" name="rating" value="2">
+                                    <label for="star2"><i class="fas fa-star"></i></label>
+                                    <input type="radio" id="star1" name="rating" value="1">
+                                    <label for="star1"><i class="fas fa-star"></i></label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="feedback-text">Comments</label>
+                                <textarea id="feedback-text" rows="4" placeholder="Share your experience..."></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="symptoms">Symptoms or Side Effects</label>
+                                <textarea id="symptoms" rows="3" placeholder="Any symptoms or side effects to report..."></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Submit Feedback</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <i class="fas fa-leaf"></i>
+                        <span>PanchakarmaPro</span>
+                    </div>
+                    <p>Modernizing traditional Ayurveda care with cutting-edge technology for better patient outcomes.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="features.html">Features</a></li>
+                        <li><a href="patient-dashboard.html">Patient Portal</a></li>
+                        <li><a href="practitioner-dashboard.html">Practitioner Portal</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <p><i class="fas fa-envelope"></i> support@panchakarmapro.com</p>
+                    <p><i class="fas fa-phone"></i> +1 (555) 123-4567</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 PanchakarmaPro. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Payment Modal -->
+    <div id="paymentModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Add Funds to Wallet</h2>
+                <button class="close-modal" onclick="closePaymentModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="payment-options">
+                    <div class="payment-amounts">
+                        <h3>Select Amount</h3>
+                        <div class="amount-grid">
+                            <button class="amount-btn" onclick="selectAmount(500)">₹500</button>
+                            <button class="amount-btn" onclick="selectAmount(1000)">₹1,000</button>
+                            <button class="amount-btn" onclick="selectAmount(2500)">₹2,500</button>
+                            <button class="amount-btn" onclick="selectAmount(5000)">₹5,000</button>
+                            <button class="amount-btn" onclick="selectAmount(10000)">₹10,000</button>
+                            <button class="amount-btn custom" onclick="toggleCustomAmount()">Custom</button>
+                        </div>
+                        <div class="custom-amount" id="customAmount" style="display: none;">
+                            <input type="number" id="customAmountInput" placeholder="Enter amount" min="100" max="50000">
+                        </div>
+                    </div>
+                    
+                    <div class="payment-methods">
+                        <h3>Payment Method</h3>
+                        <div class="method-options">
+                            <label class="method-option">
+                                <input type="radio" name="paymentMethod" value="card" checked>
+                                <div class="method-card">
+                                    <i class="fas fa-credit-card"></i>
+                                    <span>Credit/Debit Card</span>
+                                </div>
+                            </label>
+                            <label class="method-option">
+                                <input type="radio" name="paymentMethod" value="upi">
+                                <div class="method-card">
+                                    <i class="fas fa-mobile-alt"></i>
+                                    <span>UPI</span>
+                                </div>
+                            </label>
+                            <label class="method-option">
+                                <input type="radio" name="paymentMethod" value="netbanking">
+                                <div class="method-card">
+                                    <i class="fas fa-university"></i>
+                                    <span>Net Banking</span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="payment-summary">
+                    <div class="summary-item">
+                        <span>Amount:</span>
+                        <span id="selectedAmount">₹0</span>
+                    </div>
+                    <div class="summary-item">
+                        <span>Processing Fee:</span>
+                        <span>₹0</span>
+                    </div>
+                    <div class="summary-item total">
+                        <span>Total:</span>
+                        <span id="totalAmount">₹0</span>
+                    </div>
+                </div>
+                
+                <button class="btn btn-primary btn-full" onclick="processPayment()">
+                    <i class="fas fa-lock"></i>
+                    Pay Now
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Therapy Booking Modal -->
+    <div id="therapyBookingModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Book Therapy Session</h2>
+                <button class="close-modal" onclick="closeTherapyBookingModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="booking-summary" id="bookingSummary">
+                    <!-- Booking summary will be displayed here -->
+                </div>
+                <div class="payment-section">
+                    <h3>Payment Details</h3>
+                    <div class="payment-info">
+                        <div class="price-breakdown">
+                            <div class="price-item">
+                                <span>Session Fee:</span>
+                                <span id="sessionFee">₹0</span>
+                            </div>
+                            <div class="price-item">
+                                <span>GST (18%):</span>
+                                <span id="gstAmount">₹0</span>
+                            </div>
+                            <div class="price-item total">
+                                <span>Total Amount:</span>
+                                <span id="totalSessionFee">₹0</span>
+                            </div>
+                        </div>
+                        <div class="wallet-usage">
+                            <label class="checkbox-container">
+                                <input type="checkbox" id="useWallet" checked>
+                                <span class="checkmark"></span>
+                                Use wallet balance (₹<span id="availableBalance">2,500</span>)
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn btn-primary btn-full" onclick="confirmBooking()">
+                    <i class="fas fa-calendar-check"></i>
+                    Confirm Booking
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="script.js"></script>
+    <script>
+        let user = null;
+        let appointments = [];
+        let notifications = [];
+
+        // Initialize dashboard
+        document.addEventListener('DOMContentLoaded', function() {
+            checkAuthentication();
+            loadDashboardData();
+            loadNotifications();
+            setupEventListeners();
+        });
+
+        function checkAuthentication() {
+            const token = localStorage.getItem('token');
+            user = JSON.parse(localStorage.getItem('user') || '{}');
+            
+            if (!token || user.role !== 'patient') {
+                window.location.href = 'patient-login.html';
+                return;
+            }
+
+            // Update user information
+            document.getElementById('userName').textContent = user.firstName;
+            document.getElementById('userEmail').textContent = user.email;
+            
+            // Load wallet balance
+            loadWalletBalance();
+        }
+
+        async function loadDashboardData() {
+            try {
+                // Load appointments
+                const appointmentsResponse = await fetch('/api/appointments', {
+                    headers: {
+                        'Authorization': `Bearer ${localStorage.getItem('token')}`
+                    }
+                });
+                const appointmentsResult = await appointmentsResponse.json();
+                
+                if (appointmentsResult.success) {
+                    appointments = appointmentsResult.data.appointments;
+                    displayAppointments();
+                    updateStats();
+                }
+
+                // Load therapy progress
+                loadTherapyProgress();
+            } catch (error) {
+                console.error('Error loading dashboard data:', error);
+                showNotification('Failed to load dashboard data', 'error');
+            }
+        }
+
+        async function loadNotifications() {
+            try {
+                const response = await fetch('/api/notifications', {
+                    headers: {
+                        'Authorization': `Bearer ${localStorage.getItem('token')}`
+                    }
+                });
+                const result = await response.json();
+                
+                if (result.success) {
+                    notifications = result.data;
+                    displayNotifications();
+                }
+            } catch (error) {
+                console.error('Error loading notifications:', error);
+            }
+        }
+
+        function displayAppointments() {
+            const upcomingAppointments = appointments
+                .filter(apt => new Date(apt.scheduledDate) >= new Date() && apt.status !== 'cancelled')
+                .sort((a, b) => new Date(a.scheduledDate) - new Date(b.scheduledDate))
+                .slice(0, 3);
+
+            const container = document.getElementById('upcomingAppointments');
+            if (!container) return;
+
+            container.innerHTML = '';
+
+            if (upcomingAppointments.length === 0) {
+                container.innerHTML = '<p style="text-align: center; color: #64748b; padding: 2rem;">No upcoming appointments</p>';
+                return;
+            }
+
+            upcomingAppointments.forEach(appointment => {
+                const appointmentElement = document.createElement('div');
+                appointmentElement.className = 'schedule-item';
+                appointmentElement.innerHTML = `
+                    <div>
+                        <div class="schedule-time">${new Date(appointment.scheduledDate).toLocaleDateString()} at ${appointment.startTime}</div>
+                        <div class="schedule-details">${appointment.therapyType} with Dr. ${appointment.practitioner.userId.firstName} ${appointment.practitioner.userId.lastName}</div>
+                    </div>
+                    <span class="status-badge status-${appointment.status}">${appointment.status}</span>
+                `;
+                container.appendChild(appointmentElement);
+            });
+        }
+
+        function displayNotifications() {
+            const container = document.getElementById('notifications');
+            if (!container) return;
+
+            const recentNotifications = notifications
+                .filter(notif => !notif.isRead)
+                .slice(0, 3);
+
+            container.innerHTML = '';
+
+            if (recentNotifications.length === 0) {
+                container.innerHTML = '<p style="text-align: center; color: #64748b; padding: 2rem;">No new notifications</p>';
+                return;
+            }
+
+            recentNotifications.forEach(notification => {
+                const notificationElement = document.createElement('div');
+                notificationElement.className = 'notification-item';
+                notificationElement.innerHTML = `
+                    <div class="notification-icon">
+                        <i class="fas fa-${getNotificationIcon(notification.type)}"></i>
+                    </div>
+                    <div class="notification-content">
+                        <h4>${notification.title}</h4>
+                        <p>${notification.message}</p>
+                        <div class="notification-time">${new Date(notification.createdAt).toLocaleString()}</div>
+                    </div>
+                `;
+                container.appendChild(notificationElement);
+            });
+        }
+
+        function getNotificationIcon(type) {
+            const icons = {
+                'appointment_confirmation': 'calendar-check',
+                'appointment_reminder': 'bell',
+                'feedback_request': 'comments',
+                'general': 'info-circle'
+            };
+            return icons[type] || 'info-circle';
+        }
+
+        function updateStats() {
+            const totalAppointments = appointments.length;
+            const upcomingAppointments = appointments.filter(apt => 
+                new Date(apt.scheduledDate) >= new Date() && apt.status !== 'cancelled'
+            ).length;
+            const completedAppointments = appointments.filter(apt => 
+                apt.status === 'completed'
+            ).length;
+
+            // Update stat numbers
+            const statElements = document.querySelectorAll('.stat-number');
+            if (statElements[0]) statElements[0].textContent = upcomingAppointments;
+            if (statElements[1]) statElements[1].textContent = completedAppointments;
+            if (statElements[2]) statElements[2].textContent = totalAppointments;
+        }
+
+        function loadTherapyProgress() {
+            const completedAppointments = appointments.filter(apt => apt.status === 'completed');
+            
+            // Simulate therapy progress (in a real app, this would come from the backend)
+            const progressData = [
+                { therapy: 'Abhyanga', progress: 75, sessions: 6, total: 8 },
+                { therapy: 'Shirodhara', progress: 50, sessions: 3, total: 6 },
+                { therapy: 'Basti', progress: 100, sessions: 4, total: 4 }
+            ];
+
+            const container = document.getElementById('therapyProgress');
+            if (!container) return;
+
+            container.innerHTML = '';
+
+            progressData.forEach(therapy => {
+                const therapyElement = document.createElement('div');
+                therapyElement.className = 'therapy-item';
+                therapyElement.innerHTML = `
+                    <div class="therapy-info">
+                        <h4>${therapy.therapy}</h4>
+                        <p>${therapy.sessions}/${therapy.total} sessions completed</p>
+                    </div>
+                    <div class="progress-container">
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: ${therapy.progress}%"></div>
+                        </div>
+                        <span class="progress-percentage">${therapy.progress}%</span>
+                    </div>
+                `;
+                container.appendChild(therapyElement);
+            });
+        }
+
+        function setupEventListeners() {
+            // Book therapy button
+            const bookTherapyBtn = document.querySelector('.btn-primary');
+            if (bookTherapyBtn) {
+                bookTherapyBtn.addEventListener('click', () => {
+                    window.location.href = 'therapy-booking.html';
+                });
+            }
+
+            // Feedback form
+            const feedbackForm = document.getElementById('feedbackForm');
+            if (feedbackForm) {
+                feedbackForm.addEventListener('submit', handleFeedbackSubmit);
+            }
+        }
+
+        async function handleFeedbackSubmit(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(e.target);
+            const feedbackData = {
+                appointmentId: formData.get('appointmentId'),
+                rating: formData.get('rating'),
+                comment: formData.get('comment')
+            };
+
+            try {
+                const response = await fetch('/api/feedback', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${localStorage.getItem('token')}`
+                    },
+                    body: JSON.stringify(feedbackData)
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    showNotification('Feedback submitted successfully!', 'success');
+                    e.target.reset();
+                } else {
+                    showNotification(result.message || 'Failed to submit feedback', 'error');
+                }
+            } catch (error) {
+                console.error('Error submitting feedback:', error);
+                showNotification('Failed to submit feedback', 'error');
+            }
+        }
+
+        function logout() {
+            localStorage.removeItem('token');
+            localStorage.removeItem('user');
+            window.location.href = 'index.html';
+        }
+
+        function showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            notification.className = `notification notification-${type}`;
+            notification.innerHTML = `
+                <i class="fas fa-${type === 'error' ? 'exclamation-circle' : type === 'success' ? 'check-circle' : 'info-circle'}"></i>
+                <span>${message}</span>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => notification.classList.add('show'), 100);
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+                setTimeout(() => notification.remove(), 300);
+            }, 5000);
+        }
+
+        // Wallet and Payment Functions
+        async function loadWalletBalance() {
+            try {
+                const response = await fetch('/api/wallet/balance', {
+                    headers: {
+                        'Authorization': `Bearer ${localStorage.getItem('token')}`
+                    }
+                });
+                const result = await response.json();
+                
+                if (result.success) {
+                    document.getElementById('walletBalance').textContent = result.data.balance.toLocaleString();
+                }
+            } catch (error) {
+                console.error('Error loading wallet balance:', error);
+            }
+        }
+
+        function openPaymentModal() {
+            document.getElementById('paymentModal').style.display = 'block';
+        }
+
+        function closePaymentModal() {
+            document.getElementById('paymentModal').style.display = 'none';
+        }
+
+        function selectAmount(amount) {
+            // Remove active class from all buttons
+            document.querySelectorAll('.amount-btn').forEach(btn => btn.classList.remove('active'));
+            
+            // Add active class to clicked button
+            event.target.classList.add('active');
+            
+            // Update selected amount
+            document.getElementById('selectedAmount').textContent = `₹${amount.toLocaleString()}`;
+            document.getElementById('totalAmount').textContent = `₹${amount.toLocaleString()}`;
+        }
+
+        function toggleCustomAmount() {
+            const customAmountDiv = document.getElementById('customAmount');
+            const customInput = document.getElementById('customAmountInput');
+            
+            if (customAmountDiv.style.display === 'none') {
+                customAmountDiv.style.display = 'block';
+                customInput.focus();
+            } else {
+                customAmountDiv.style.display = 'none';
+            }
+        }
+
+        function processPayment() {
+            const selectedAmount = document.getElementById('selectedAmount').textContent.replace('₹', '').replace(',', '');
+            const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
+            
+            if (!selectedAmount || selectedAmount === '0') {
+                showNotification('Please select an amount', 'error');
+                return;
+            }
+
+            // Simulate payment processing
+            showNotification('Processing payment...', 'info');
+            
+            setTimeout(() => {
+                // Simulate successful payment
+                const currentBalance = parseInt(document.getElementById('walletBalance').textContent.replace(',', ''));
+                const newBalance = currentBalance + parseInt(selectedAmount);
+                document.getElementById('walletBalance').textContent = newBalance.toLocaleString();
+                
+                showNotification('Payment successful! Funds added to wallet.', 'success');
+                closePaymentModal();
+            }, 2000);
+        }
+
+        // Therapy Booking Functions
+        function bookTherapy(packageType) {
+            const packages = {
+                'first-session': { name: 'First Session', price: 2499, duration: 60 },
+                'regular-session': { name: 'Regular Session', price: 999, duration: 45 },
+                'monthly-package': { name: 'Monthly Package', price: 3999, duration: 180 }
+            };
+
+            const selectedPackage = packages[packageType];
+            if (!selectedPackage) return;
+
+            // Update booking summary
+            document.getElementById('bookingSummary').innerHTML = `
+                <div class="package-info">
+                    <h3>${selectedPackage.name}</h3>
+                    <p>Duration: ${selectedPackage.duration} minutes</p>
+                    <p>Price: ₹${selectedPackage.price.toLocaleString()}</p>
+                </div>
+            `;
+
+            // Update payment details
+            const sessionFee = selectedPackage.price;
+            const gstAmount = Math.round(sessionFee * 0.18);
+            const totalAmount = sessionFee + gstAmount;
+
+            document.getElementById('sessionFee').textContent = `₹${sessionFee.toLocaleString()}`;
+            document.getElementById('gstAmount').textContent = `₹${gstAmount.toLocaleString()}`;
+            document.getElementById('totalSessionFee').textContent = `₹${totalAmount.toLocaleString()}`;
+
+            // Store selected package for booking
+            window.selectedPackage = selectedPackage;
+
+            // Open booking modal
+            document.getElementById('therapyBookingModal').style.display = 'block';
+        }
+
+        function closeTherapyBookingModal() {
+            document.getElementById('therapyBookingModal').style.display = 'none';
+        }
+
+        function confirmBooking() {
+            const useWallet = document.getElementById('useWallet').checked;
+            const totalAmount = parseInt(document.getElementById('totalSessionFee').textContent.replace('₹', '').replace(',', ''));
+            const currentBalance = parseInt(document.getElementById('walletBalance').textContent.replace(',', ''));
+
+            if (useWallet && currentBalance < totalAmount) {
+                showNotification('Insufficient wallet balance. Please add funds.', 'error');
+                return;
+            }
+
+            // Simulate booking confirmation
+            showNotification('Booking confirmed! Redirecting to therapy selection...', 'success');
+            
+            setTimeout(() => {
+                closeTherapyBookingModal();
+                window.location.href = 'therapy-booking.html';
+            }, 2000);
+        }
+
+        // Auto-refresh dashboard every 5 minutes
+        setInterval(() => {
+            loadDashboardData();
+            loadNotifications();
+        }, 300000);
+    </script>
+</body>
+</html>

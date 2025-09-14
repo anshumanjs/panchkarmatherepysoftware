@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Therapy Session - PanchakarmaPro</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Chatbot Script -->
+    <script> window.chtlConfig = { chatbotId: "5514298529" } </script>
+    <script async data-id="5514298529" id="chtl-script" type="text/javascript" src="https://chatling.ai/js/embed.js"></script>
+    
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-leaf"></i>
+                <span>PanchakarmaPro</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="features.html" class="nav-link">Features</a></li>
+                <li><a href="therapy-booking.html" class="nav-link active">Book Therapy</a></li>
+                <li><a href="patient-report-dashboard.html" class="nav-link">Patient Reports</a></li>
+                <li><a href="feedback.html" class="nav-link">Feedback</a></li>
+                <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Booking Section -->
+    <section class="booking-section">
+        <div class="container">
+            <div class="booking-header">
+                <h1>Book Your Therapy Session</h1>
+                <p>Select a practitioner and time slot that works for you</p>
+            </div>
+
+            <div class="booking-container">
+                <!-- Step 1: Select Therapy Type -->
+                <div class="booking-step active" id="step1">
+                    <div class="step-header">
+                        <div class="step-number">1</div>
+                        <h2>Choose Therapy Type</h2>
+                    </div>
+                    <div class="therapy-types" id="therapyTypes">
+                        <!-- Therapy types will be loaded here -->
+                    </div>
+                </div>
+
+                <!-- Step 2: Select Practitioner -->
+                <div class="booking-step" id="step2">
+                    <div class="step-header">
+                        <div class="step-number">2</div>
+                        <h2>Select Practitioner</h2>
+                    </div>
+                    <div class="practitioner-selection" id="practitionerSelection">
+                        <!-- Practitioners will be loaded here -->
+                    </div>
+                </div>
+
+                <!-- Step 3: Select Date & Time -->
+                <div class="booking-step" id="step3">
+                    <div class="step-header">
+                        <div class="step-number">3</div>
+                        <h2>Choose Date & Time</h2>
+                    </div>
+                    <div class="datetime-selection">
+                        <div class="date-picker">
+                            <label>Select Date:</label>
+                            <input type="date" id="selectedDate" min="" onchange="loadAvailableSlots()">
+                        </div>
+                        <div class="time-slots" id="timeSlots">
+                            <!-- Available time slots will be loaded here -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 4: Confirm Booking -->
+                <div class="booking-step" id="step4">
+                    <div class="step-header">
+                        <div class="step-number">4</div>
+                        <h2>Confirm Booking</h2>
+                    </div>
+                    <div class="booking-summary" id="bookingSummary">
+                        <!-- Booking summary will be displayed here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Navigation Buttons -->
+            <div class="booking-navigation">
+                <button class="btn btn-outline" id="prevBtn" onclick="previousStep()" style="display: none;">
+                    <i class="fas fa-arrow-left"></i>
+                    Previous
+                </button>
+                <button class="btn btn-primary" id="nextBtn" onclick="nextStep()" disabled>
+                    Next
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+                <button class="btn btn-success" id="confirmBtn" onclick="confirmBooking()" style="display: none;">
+                    <i class="fas fa-check"></i>
+                    Confirm Booking
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <i class="fas fa-leaf"></i>
+                        <span>PanchakarmaPro</span>
+                    </div>
+                    <p>Modernizing traditional Ayurveda care with cutting-edge technology for better patient outcomes.</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 PanchakarmaPro. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/api.js"></script>
+    <script src="script.js"></script>
+    <script>
+        let currentStep = 1;
+        let selectedTherapy = null;
+        let selectedPractitioner = null;
+        let selectedDateTime = null;
+        let availableSlots = [];
+
+        // Initialize booking page
+        document.addEventListener('DOMContentLoaded', function() {
+            loadTherapyTypes();
+            setMinDate();
+            initializePage();
+        });
+
+        function initializePage() {
+            console.log('Therapy booking page loaded successfully');
+            
+            // Initialize chatbot
+            initializeChatbot();
+        }
+
+        // Chatbot initialization
+        function initializeChatbot() {
+            // Wait for chatbot script to load
+            const checkChatbot = setInterval(() => {
+                if (window.chatling || document.querySelector('[data-chatbot-id]')) {
+                    console.log('Chatbot loaded successfully');
+                    clearInterval(checkChatbot);
+                    
+                    // Add custom styling to chatbot if needed
+                    customizeChatbot();
+                }
+            }, 100);
+
+            // Clear interval after 10 seconds
+            setTimeout(() => {
+                clearInterval(checkChatbot);
+            }, 10000);
+        }
+
+        // Customize chatbot appearance
+        function customizeChatbot() {
+            // Add any custom chatbot styling or behavior here
+            const chatbotButton = document.querySelector('[data-chatbot-id] button, .chatbot-button');
+            if (chatbotButton) {
+                chatbotButton.style.background = 'linear-gradient(135deg, #667eea, #764ba2)';
+                chatbotButton.style.borderRadius = '50%';
+                chatbotButton.style.boxShadow = '0 4px 20px rgba(102, 126, 234, 0.3)';
+            }
+        }
+
+        function setMinDate() {
+            const today = new Date();
+            const tomorrow = new Date(today);
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            document.getElementById('selectedDate').min = tomorrow.toISOString().split('T')[0];
+        }
+
+        async function loadTherapyTypes() {
+            try {
+                const response = await fetch('/api/therapies');
+                const result = await response.json();
+                
+                if (result.success) {
+                    displayTherapyTypes(result.data);
+                } else {
+                    showNotification('Failed to load therapy types', 'error');
+                }
+            } catch (error) {
+                console.error('Error loading therapy types:', error);
+                showNotification('Error loading therapy types', 'error');
+            }
+        }
+
+        function displayTherapyTypes(therapies) {
+            const container = document.getElementById('therapyTypes');
+            container.innerHTML = '';
+
+            therapies.forEach(therapy => {
+                const therapyCard = document.createElement('div');
+                therapyCard.className = 'therapy-card';
+                therapyCard.onclick = () => selectTherapy(therapy);
+                therapyCard.innerHTML = `
+                    <div class="therapy-icon">
+                        <i class="fas fa-${therapy.icon || 'spa'}"></i>
+                    </div>
+                    <h3>${therapy.name}</h3>
+                    <p>${therapy.description}</p>
+                    <div class="therapy-details">
+                        <span class="duration"><i class="fas fa-clock"></i> ${therapy.duration} minutes</span>
+                        <span class="price"><i class="fas fa-dollar-sign"></i> $${therapy.price}</span>
+                    </div>
+                `;
+                container.appendChild(therapyCard);
+            });
+        }
+
+        function selectTherapy(therapy) {
+            selectedTherapy = therapy;
+            
+            // Remove previous selection
+            document.querySelectorAll('.therapy-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            
+            // Add selection to clicked card
+            event.currentTarget.classList.add('selected');
+            
+            // Load practitioners for this therapy
+            loadPractitioners(therapy._id);
+            
+            // Enable next button
+            document.getElementById('nextBtn').disabled = false;
+        }
+
+        async function loadPractitioners(therapyId) {
+            try {
+                const response = await fetch(`/api/practitioners?specialization=${therapyId}`);
+                const result = await response.json();
+                
+                if (result.success) {
+                    displayPractitioners(result.data);
+                } else {
+                    showNotification('Failed to load practitioners', 'error');
+                }
+            } catch (error) {
+                console.error('Error loading practitioners:', error);
+                showNotification('Error loading practitioners', 'error');
+            }
+        }
+
+        function displayPractitioners(practitioners) {
+            const container = document.getElementById('practitionerSelection');
+            container.innerHTML = '';
+
+            practitioners.forEach(practitioner => {
+                const practitionerCard = document.createElement('div');
+                practitionerCard.className = 'practitioner-card';
+                practitionerCard.onclick = () => selectPractitioner(practitioner);
+                practitionerCard.innerHTML = `
+                    <div class="practitioner-avatar">
+                        <i class="fas fa-user-md"></i>
+                    </div>
+                    <div class="practitioner-info">
+                        <h3>Dr. ${practitioner.userId.firstName} ${practitioner.userId.lastName}</h3>
+                        <p class="specialization">${practitioner.specialization.join(', ')}</p>
+                        <p class="experience">${practitioner.experience} years experience</p>
+                        <div class="practitioner-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span>4.8 (24 reviews)</span>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(practitionerCard);
+            });
+        }
+
+        function selectPractitioner(practitioner) {
+            selectedPractitioner = practitioner;
+            
+            // Remove previous selection
+            document.querySelectorAll('.practitioner-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            
+            // Add selection to clicked card
+            event.currentTarget.classList.add('selected');
+            
+            // Enable next button
+            document.getElementById('nextBtn').disabled = false;
+        }
+
+        async function loadAvailableSlots() {
+            const selectedDate = document.getElementById('selectedDate').value;
+            if (!selectedDate || !selectedPractitioner) return;
+
+            try {
+                const response = await fetch(`/api/appointments/availability?practitionerId=${selectedPractitioner._id}&date=${selectedDate}`);
+                const result = await response.json();
+                
+                if (result.success) {
+                    availableSlots = result.data;
+                    displayTimeSlots();
+                } else {
+                    showNotification('Failed to load available slots', 'error');
+                }
+            } catch (error) {
+                console.error('Error loading available slots:', error);
+                showNotification('Error loading available slots', 'error');
+            }
+        }
+
+        function displayTimeSlots() {
+            const container = document.getElementById('timeSlots');
+            container.innerHTML = '';
+
+            if (availableSlots.length === 0) {
+                container.innerHTML = '<p class="no-slots">No available slots for this date. Please select another date.</p>';
+                return;
+            }
+
+            availableSlots.forEach(slot => {
+                const slotButton = document.createElement('button');
+                slotButton.className = 'time-slot';
+                slotButton.onclick = () => selectTimeSlot(slot);
+                slotButton.innerHTML = `
+                    <i class="fas fa-clock"></i>
+                    ${slot.time}
+                `;
+                container.appendChild(slotButton);
+            });
+        }
+
+        function selectTimeSlot(slot) {
+            selectedDateTime = slot;
+            
+            // Remove previous selection
+            document.querySelectorAll('.time-slot').forEach(btn => {
+                btn.classList.remove('selected');
+            });
+            
+            // Add selection to clicked button
+            event.currentTarget.classList.add('selected');
+            
+            // Enable next button
+            document.getElementById('nextBtn').disabled = false;
+        }
+
+        function nextStep() {
+            if (currentStep < 4) {
+                // Hide current step
+                document.getElementById(`step${currentStep}`).classList.remove('active');
+                
+                // Show next step
+                currentStep++;
+                document.getElementById(`step${currentStep}`).classList.add('active');
+                
+                // Update navigation buttons
+                updateNavigationButtons();
+                
+                // Load data for next step
+                if (currentStep === 4) {
+                    displayBookingSummary();
+                }
+            }
+        }
+
+        function previousStep() {
+            if (currentStep > 1) {
+                // Hide current step
+                document.getElementById(`step${currentStep}`).classList.remove('active');
+                
+                // Show previous step
+                currentStep--;
+                document.getElementById(`step${currentStep}`).classList.add('active');
+                
+                // Update navigation buttons
+                updateNavigationButtons();
+            }
+        }
+
+        function updateNavigationButtons() {
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const confirmBtn = document.getElementById('confirmBtn');
+
+            // Show/hide previous button
+            prevBtn.style.display = currentStep > 1 ? 'block' : 'none';
+
+            // Show/hide next/confirm buttons
+            if (currentStep === 4) {
+                nextBtn.style.display = 'none';
+                confirmBtn.style.display = 'block';
+            } else {
+                nextBtn.style.display = 'block';
+                confirmBtn.style.display = 'none';
+                nextBtn.disabled = !canProceedToNextStep();
+            }
+        }
+
+        function canProceedToNextStep() {
+            switch (currentStep) {
+                case 1: return selectedTherapy !== null;
+                case 2: return selectedPractitioner !== null;
+                case 3: return selectedDateTime !== null;
+                default: return false;
+            }
+        }
+
+        function displayBookingSummary() {
+            const container = document.getElementById('bookingSummary');
+            container.innerHTML = `
+                <div class="summary-card">
+                    <h3>Booking Summary</h3>
+                    <div class="summary-item">
+                        <strong>Therapy:</strong> ${selectedTherapy.name}
+                    </div>
+                    <div class="summary-item">
+                        <strong>Practitioner:</strong> Dr. ${selectedPractitioner.userId.firstName} ${selectedPractitioner.userId.lastName}
+                    </div>
+                    <div class="summary-item">
+                        <strong>Date:</strong> ${new Date(selectedDateTime.date).toLocaleDateString()}
+                    </div>
+                    <div class="summary-item">
+                        <strong>Time:</strong> ${selectedDateTime.time}
+                    </div>
+                    <div class="summary-item">
+                        <strong>Duration:</strong> ${selectedTherapy.duration} minutes
+                    </div>
+                    <div class="summary-item">
+                        <strong>Price:</strong> $${selectedTherapy.price}
+                    </div>
+                </div>
+            `;
+        }
+
+        async function confirmBooking() {
+            try {
+                const bookingData = {
+                    therapyId: selectedTherapy._id,
+                    practitionerId: selectedPractitioner._id,
+                    appointmentDate: selectedDateTime.date,
+                    appointmentTime: selectedDateTime.time,
+                    duration: selectedTherapy.duration,
+                    price: selectedTherapy.price
+                };
+
+                const token = localStorage.getItem('token');
+                const response = await fetch('/api/appointments', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify(bookingData)
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    showNotification('Appointment booked successfully!', 'success');
+                    setTimeout(() => {
+                        window.location.href = 'patient-dashboard.html';
+                    }, 2000);
+                } else {
+                    showNotification(result.message || 'Failed to book appointment', 'error');
+                }
+            } catch (error) {
+                console.error('Error booking appointment:', error);
+                showNotification('Error booking appointment', 'error');
+            }
+        }
+
+
+        function showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            notification.className = `notification notification-${type}`;
+            notification.innerHTML = `
+                <i class="fas fa-${type === 'error' ? 'exclamation-circle' : type === 'success' ? 'check-circle' : 'info-circle'}"></i>
+                <span>${message}</span>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => notification.classList.add('show'), 100);
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+                setTimeout(() => notification.remove(), 300);
+            }, 5000);
+        }
+    </script>
+</body>
+</html>

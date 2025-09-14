@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Report Dashboard - PanchakarmaPro</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-leaf"></i>
+                <span>PanchakarmaPro</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="features.html" class="nav-link">Features</a></li>
+                <li><a href="index.html#therapy-booking" class="nav-link">Book Therapy</a></li>
+                <li><a href="patient-report-dashboard.html" class="nav-link active">Patient Reports</a></li>
+                <li><a href="feedback.html" class="nav-link">Feedback</a></li>
+                <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+                <li><a href="practitioner-login.html" class="nav-link">Practitioner Login</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Dashboard Header -->
+    <section class="dashboard-header">
+        <div class="container">
+            <div class="header-content">
+                <div class="user-info">
+                    <div class="user-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="user-details">
+                        <h1 class="dashboard-title">Your Health Journey</h1>
+                        <p class="user-email">Track your progress and improvements</p>
+                    </div>
+                </div>
+                <div class="header-actions">
+                    <button class="btn btn-outline" onclick="downloadReport()">
+                        <i class="fas fa-download"></i>
+                        Download Report
+                    </button>
+                    <button class="btn btn-primary" onclick="shareReport()">
+                        <i class="fas fa-share"></i>
+                        Share Progress
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dashboard Content -->
+    <section class="dashboard">
+        <div class="container">
+            <!-- Overview Stats -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 id="totalSessions">12</h3>
+                        <p>Total Sessions</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 id="totalHours">48</h3>
+                        <p>Therapy Hours</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 id="improvementScore">85%</h3>
+                        <p>Overall Improvement</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 id="satisfactionRating">4.8</h3>
+                        <p>Satisfaction Rating</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Charts Section -->
+            <div class="charts-section">
+                <div class="chart-container">
+                    <h3>Progress Over Time</h3>
+                    <canvas id="progressChart"></canvas>
+                </div>
+                <div class="chart-container">
+                    <h3>Dosha Balance</h3>
+                    <canvas id="doshaChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Session Details -->
+            <div class="session-details">
+                <h3>Session History</h3>
+                <div class="session-timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-marker completed"></div>
+                        <div class="timeline-content">
+                            <h4>Vamana Therapy Session</h4>
+                            <p class="session-date">December 15, 2024</p>
+                            <p class="session-duration">Duration: 2 hours</p>
+                            <div class="session-progress">
+                                <span class="progress-label">Energy Level:</span>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 85%"></div>
+                                </div>
+                                <span class="progress-value">85%</span>
+                            </div>
+                            <div class="session-notes">
+                                <p><strong>Practitioner Notes:</strong> Excellent response to treatment. Patient showed significant improvement in respiratory function.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-marker completed"></div>
+                        <div class="timeline-content">
+                            <h4>Virechana Therapy Session</h4>
+                            <p class="session-date">December 10, 2024</p>
+                            <p class="session-duration">Duration: 1.5 hours</p>
+                            <div class="session-progress">
+                                <span class="progress-label">Digestive Health:</span>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 78%"></div>
+                                </div>
+                                <span class="progress-value">78%</span>
+                            </div>
+                            <div class="session-notes">
+                                <p><strong>Practitioner Notes:</strong> Good detoxification achieved. Patient reported improved digestion and skin clarity.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-marker completed"></div>
+                        <div class="timeline-content">
+                            <h4>Basti Therapy Session</h4>
+                            <p class="session-date">December 5, 2024</p>
+                            <p class="session-duration">Duration: 1 hour</p>
+                            <div class="session-progress">
+                                <span class="progress-label">Joint Mobility:</span>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 92%"></div>
+                                </div>
+                                <span class="progress-value">92%</span>
+                            </div>
+                            <div class="session-notes">
+                                <p><strong>Practitioner Notes:</strong> Outstanding results in joint flexibility and pain reduction.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-marker in-progress"></div>
+                        <div class="timeline-content">
+                            <h4>Nasya Therapy Session</h4>
+                            <p class="session-date">December 20, 2024</p>
+                            <p class="session-duration">Duration: 45 minutes</p>
+                            <div class="session-progress">
+                                <span class="progress-label">Mental Clarity:</span>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 65%"></div>
+                                </div>
+                                <span class="progress-value">65%</span>
+                            </div>
+                            <div class="session-notes">
+                                <p><strong>Practitioner Notes:</strong> Session in progress. Patient showing positive response to nasal therapy.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Health Metrics -->
+            <div class="health-metrics">
+                <h3>Health Metrics Tracking</h3>
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <h4>Blood Pressure</h4>
+                        <div class="metric-chart">
+                            <canvas id="bpChart"></canvas>
+                        </div>
+                        <div class="metric-status good">Normal Range</div>
+                    </div>
+                    <div class="metric-card">
+                        <h4>Weight Management</h4>
+                        <div class="metric-chart">
+                            <canvas id="weightChart"></canvas>
+                        </div>
+                        <div class="metric-status good">-5.2 kg</div>
+                    </div>
+                    <div class="metric-card">
+                        <h4>Sleep Quality</h4>
+                        <div class="metric-chart">
+                            <canvas id="sleepChart"></canvas>
+                        </div>
+                        <div class="metric-status excellent">8.5/10</div>
+                    </div>
+                    <div class="metric-card">
+                        <h4>Stress Levels</h4>
+                        <div class="metric-chart">
+                            <canvas id="stressChart"></canvas>
+                        </div>
+                        <div class="metric-status good">Low</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recommendations -->
+            <div class="recommendations">
+                <h3>Personalized Recommendations</h3>
+                <div class="recommendation-cards">
+                    <div class="recommendation-card">
+                        <i class="fas fa-utensils"></i>
+                        <h4>Dietary Guidelines</h4>
+                        <p>Continue with warm, easily digestible foods. Avoid cold and processed foods for better digestion.</p>
+                    </div>
+                    <div class="recommendation-card">
+                        <i class="fas fa-bed"></i>
+                        <h4>Sleep Schedule</h4>
+                        <p>Maintain regular sleep schedule. Go to bed by 10 PM and wake up by 6 AM for optimal health.</p>
+                    </div>
+                    <div class="recommendation-card">
+                        <i class="fas fa-dumbbell"></i>
+                        <h4>Exercise Routine</h4>
+                        <p>Practice gentle yoga and pranayama for 30 minutes daily to maintain dosha balance.</p>
+                    </div>
+                    <div class="recommendation-card">
+                        <i class="fas fa-leaf"></i>
+                        <h4>Herbal Supplements</h4>
+                        <p>Continue with prescribed herbal supplements for 2 more weeks to complete the treatment cycle.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>PanchakarmaPro</h3>
+                    <p>Revolutionizing Ayurveda care with modern technology.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="features.html">Features</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 PanchakarmaPro. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize charts when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeCharts();
+            loadDashboardData();
+        });
+
+        function initializeCharts() {
+            // Progress Chart
+            const progressCtx = document.getElementById('progressChart').getContext('2d');
+            new Chart(progressCtx, {
+                type: 'line',
+                data: {
+                    labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5', 'Week 6'],
+                    datasets: [{
+                        label: 'Energy Level',
+                        data: [45, 52, 68, 75, 82, 85],
+                        borderColor: '#059669',
+                        backgroundColor: 'rgba(5, 150, 105, 0.1)',
+                        tension: 0.4
+                    }, {
+                        label: 'Pain Level',
+                        data: [80, 70, 55, 45, 30, 25],
+                        borderColor: '#dc2626',
+                        backgroundColor: 'rgba(220, 38, 38, 0.1)',
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100
+                        }
+                    }
+                }
+            });
+
+            // Dosha Chart
+            const doshaCtx = document.getElementById('doshaChart').getContext('2d');
+            new Chart(doshaCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Vata', 'Pitta', 'Kapha'],
+                    datasets: [{
+                        data: [30, 25, 45],
+                        backgroundColor: ['#8b5cf6', '#f59e0b', '#10b981'],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'bottom'
+                        }
+                    }
+                }
+            });
+
+            // Blood Pressure Chart
+            const bpCtx = document.getElementById('bpChart').getContext('2d');
+            new Chart(bpCtx, {
+                type: 'line',
+                data: {
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                    datasets: [{
+                        label: 'Systolic',
+                        data: [140, 135, 130, 125, 120, 118],
+                        borderColor: '#dc2626',
+                        tension: 0.4
+                    }, {
+                        label: 'Diastolic',
+                        data: [90, 88, 85, 82, 80, 78],
+                        borderColor: '#059669',
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+
+            // Weight Chart
+            const weightCtx = document.getElementById('weightChart').getContext('2d');
+            new Chart(weightCtx, {
+                type: 'line',
+                data: {
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                    datasets: [{
+                        label: 'Weight (kg)',
+                        data: [75, 74, 72, 71, 70, 69.8],
+                        borderColor: '#059669',
+                        backgroundColor: 'rgba(5, 150, 105, 0.1)',
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: false
+                        }
+                    }
+                }
+            });
+
+            // Sleep Chart
+            const sleepCtx = document.getElementById('sleepChart').getContext('2d');
+            new Chart(sleepCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                    datasets: [{
+                        label: 'Sleep Hours',
+                        data: [7.5, 8, 7, 8.5, 7.5, 9, 8.5],
+                        backgroundColor: '#059669'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 10
+                        }
+                    }
+                }
+            });
+
+            // Stress Chart
+            const stressCtx = document.getElementById('stressChart').getContext('2d');
+            new Chart(stressCtx, {
+                type: 'line',
+                data: {
+                    labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
+                    datasets: [{
+                        label: 'Stress Level',
+                        data: [8, 6, 4, 3],
+                        borderColor: '#f59e0b',
+                        backgroundColor: 'rgba(245, 158, 11, 0.1)',
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 10
+                        }
+                    }
+                }
+            });
+        }
+
+        function loadDashboardData() {
+            // Simulate loading data from API
+            // In a real application, this would fetch data from the backend
+            console.log('Loading dashboard data...');
+        }
+
+        function downloadReport() {
+            // Simulate report download
+            alert('Downloading your comprehensive health report...');
+        }
+
+        function shareReport() {
+            // Simulate sharing functionality
+            if (navigator.share) {
+                navigator.share({
+                    title: 'My Panchakarma Progress Report',
+                    text: 'Check out my health improvement journey with Panchakarma therapy!',
+                    url: window.location.href
+                });
+            } else {
+                alert('Share your progress with friends and family!');
+            }
+        }
+    </script>
+</body>
+</html>
